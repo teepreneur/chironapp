@@ -31,6 +31,7 @@ interface SidebarItem {
     icon: any
     label: string
     href: string
+    comingSoon?: boolean
 }
 
 interface Notification {
@@ -65,13 +66,13 @@ const colorMap: Record<string, string> = {
 }
 
 const sidebarItems: SidebarItem[] = [
-    { icon: LayoutDashboard, label: "Home", href: "/teacher/dashboard" },
-    { icon: Calendar, label: "Calendar", href: "/teacher/calendar" },
-    { icon: Users, label: "Students", href: "/teacher/students" },
-    { icon: Ticket, label: "My Gigs", href: "/teacher/gigs" },
-    { icon: DollarSign, label: "Earnings", href: "/teacher/earnings" },
-    { icon: MessageSquare, label: "Messages", href: "/teacher/messages" },
-    { icon: Settings, label: "Settings", href: "/teacher/settings" },
+    { icon: LayoutDashboard, label: "Home", href: "/teacher/dashboard", comingSoon: false },
+    { icon: Calendar, label: "Calendar", href: "/teacher/calendar", comingSoon: true },
+    { icon: Users, label: "Students", href: "/teacher/students", comingSoon: true },
+    { icon: Ticket, label: "My Gigs", href: "/teacher/gigs", comingSoon: false },
+    { icon: DollarSign, label: "Earnings", href: "/teacher/earnings", comingSoon: false },
+    { icon: MessageSquare, label: "Messages", href: "/teacher/messages", comingSoon: true },
+    { icon: Settings, label: "Settings", href: "/teacher/settings", comingSoon: false },
 ]
 
 export function TeacherSidebar({ className }: { className?: string }) {
@@ -148,23 +149,18 @@ export function TeacherSidebar({ className }: { className?: string }) {
                     {/* Notification Bell */}
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <button className="size-9 flex items-center justify-center rounded-full hover:bg-secondary relative">
+                            <button className="relative p-2 rounded-full hover:bg-secondary transition-colors text-muted-foreground hover:text-foreground">
                                 <Bell className="size-5" />
                                 {unreadCount > 0 && (
-                                    <span className="absolute top-0 right-0 min-w-[16px] h-[16px] bg-red-500 rounded-full border-2 border-white dark:border-[#1a2632] text-white text-[9px] font-bold flex items-center justify-center px-0.5">
-                                        {unreadCount > 9 ? '9+' : unreadCount}
-                                    </span>
+                                    <span className="absolute top-1 right-1 size-2 rounded-full bg-red-500" />
                                 )}
                             </button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="start" className="w-80">
-                            <div className="flex items-center justify-between px-3 py-2 border-b">
-                                <h3 className="font-semibold text-sm">Notifications</h3>
+                        <DropdownMenuContent align="end" className="w-80 p-0">
+                            <div className="p-4 border-b border-border flex items-center justify-between">
+                                <h4 className="font-bold text-sm">Notifications</h4>
                                 {unreadCount > 0 && (
-                                    <button
-                                        onClick={markAllAsRead}
-                                        className="text-xs text-primary hover:underline"
-                                    >
+                                    <button onClick={markAllAsRead} className="text-xs text-primary hover:underline">
                                         Mark all as read
                                     </button>
                                 )}
@@ -236,7 +232,12 @@ export function TeacherSidebar({ className }: { className?: string }) {
                             >
                                 <item.icon size={20} className={cn(isActive && "fill-current")} />
                                 <span className="text-sm font-medium flex-1">{item.label}</span>
-                                {item.label === "Messages" && <UnreadMessagesBadge userRole="teacher" />}
+                                {item.comingSoon && (
+                                    <span className="text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 font-bold px-1.5 py-0.5 rounded leading-none">
+                                        Soon
+                                    </span>
+                                )}
+                                {!item.comingSoon && item.label === "Messages" && <UnreadMessagesBadge userRole="teacher" />}
                             </Link>
                         )
                     })}

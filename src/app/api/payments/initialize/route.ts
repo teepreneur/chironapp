@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 
+export const dynamic = 'force-dynamic'
+
 const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY
 
 if (!PAYSTACK_SECRET_KEY) {

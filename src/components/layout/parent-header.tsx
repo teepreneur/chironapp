@@ -46,10 +46,10 @@ const colorMap: Record<string, string> = {
 }
 
 const navItems = [
-    { label: "Dashboard", href: "/parent/dashboard" },
-    { label: "Tutors", href: "/parent/tutors" },
-    { label: "Roadmaps", href: "/parent/roadmaps" },
-    { label: "Messages", href: "/parent/messages" },
+    { label: "Dashboard", href: "/parent/dashboard", comingSoon: false },
+    { label: "Tutors", href: "/parent/tutors", comingSoon: false },
+    { label: "Roadmaps", href: "/parent/roadmaps", comingSoon: true },
+    { label: "Messages", href: "/parent/messages", comingSoon: true },
 ]
 
 export function ParentHeader() {
@@ -78,7 +78,12 @@ export function ParentHeader() {
                                     )}
                                 >
                                     {item.label}
-                                    {item.label === "Messages" && <UnreadMessagesBadge userRole="parent" />}
+                                    {item.comingSoon && (
+                                        <span className="text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 font-bold px-1.5 py-0.5 rounded leading-none">
+                                            Soon
+                                        </span>
+                                    )}
+                                    {!item.comingSoon && item.label === "Messages" && <UnreadMessagesBadge userRole="parent" />}
                                 </Link>
                             )
                         })}

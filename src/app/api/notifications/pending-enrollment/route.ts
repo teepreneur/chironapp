@@ -2,13 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 
-// Initialize Resend
-const resend = new Resend(process.env.RESEND_API_KEY)
+export const dynamic = 'force-dynamic'
 
 // Create admin client for sending emails via Supabase
 const supabaseAdmin = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
+    process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
+    process.env.SUPABASE_SERVICE_ROLE_KEY || 'placeholder'
 )
 
 export async function POST(request: NextRequest) {
@@ -40,6 +39,7 @@ export async function POST(request: NextRequest) {
         // Integrate actual email sending with Resend
         if (process.env.RESEND_API_KEY) {
             try {
+                const resend = new Resend(process.env.RESEND_API_KEY)
                 await resend.emails.send({
                     from: 'STEAM Spark <hello@steamsparkgh.com>',
                     to: teacherEmail,

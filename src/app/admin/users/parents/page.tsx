@@ -16,6 +16,7 @@ interface Parent {
     id: string
     full_name: string | null
     email: string | null
+    phone?: string | null
     avatar_url: string | null
     city: string | null
     country: string | null
@@ -62,6 +63,7 @@ export default function ParentsPage() {
 
                     return {
                         ...parent,
+                        phone: (parent as any).phone || (parent as any).phone_number || null,
                         children_count: childrenCount || 0,
                         booking_count: bookingCount || 0
                     }
@@ -77,7 +79,8 @@ export default function ParentsPage() {
     const filteredParents = parents.filter(p =>
         !searchQuery ||
         p.full_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.email?.toLowerCase().includes(searchQuery.toLowerCase())
+        p.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.phone?.toLowerCase().includes(searchQuery.toLowerCase())
     )
 
     if (loading) {
@@ -110,7 +113,7 @@ export default function ParentsPage() {
             <div className="relative max-w-md">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                 <Input
-                    placeholder="Search by name or email..."
+                    placeholder="Search by name, email, or phone..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10"
@@ -138,47 +141,61 @@ export default function ParentsPage() {
                                 </td>
                             </tr>
                         ) : (
-                            filteredParents.map((parent) => (
-                                <tr key={parent.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                                    <td className="py-3 px-4">
-                                        <div className="flex items-center gap-3">
-                                            <div className="size-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
-                                                {parent.avatar_url ? (
-                                                    <img src={parent.avatar_url} className="size-full object-cover" alt="" />
-                                                ) : (
-                                                    <div className="size-full flex items-center justify-center">
-                                                        <Users className="size-5 text-muted-foreground" />
-                                                    </div>
+                            filteredParents.map((parent) => {
+                                const cleanPhone = parent.phone ? parent.phone.replace(/[^0-9]/g, '') : null
+                                const waUrl = cleanPhone ? `https://wa.me/${cleanPhone}` : null
+
+                                return (
+                                    <tr key={parent.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                                        <td className="py-3 px-4">
+                                            <div className="flex items-center gap-3">
+                                                <div className="size-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                                    {parent.avatar_url ? (
+                                                        <img src={parent.avatar_url} className="size-full object-cover" alt="" />
+                                                    ) : (
+                                                        <div className="size-full flex items-center justify-center">
+                                                            <Users className="size-5 text-muted-foreground" />
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <div>
+                                                    <p className="font-medium">{parent.full_name || 'Unnamed'}</p>
+                                                    <p className="text-xs text-muted-foreground">{parent.email}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 px-4 text-sm text-muted-foreground">
+                                            {[parent.city, parent.country].filter(Boolean).join(', ') || '-'}
+                                        </td>
+                                        <td className="py-3 px-4 font-medium">
+                                            {parent.children_count}
+                                        </td>
+                                        <td className="py-3 px-4 font-medium">
+                                            {parent.booking_count}
+                                        </td>
+                                        <td className="py-3 px-4 text-sm text-muted-foreground">
+                                            {format(parseISO(parent.created_at), 'MMM d, yyyy')}
+                                        </td>
+                                        <td className="py-3 px-4">
+                                            <div className="flex items-center gap-1">
+                                                <Button asChild size="sm" variant="ghost">
+                                                    <Link href={getAdminHref(`/admin/users/parents/${parent.id}`)}>
+                                                        <Eye className="size-4 mr-1" />
+                                                        View
+                                                    </Link>
+                                                </Button>
+                                                {waUrl && (
+                                                    <Button asChild size="sm" variant="outline" className="text-green-600 border-green-200 hover:bg-green-50">
+                                                        <a href={waUrl} target="_blank" rel="noopener noreferrer">
+                                                            WhatsApp
+                                                        </a>
+                                                    </Button>
                                                 )}
                                             </div>
-                                            <div>
-                                                <p className="font-medium">{parent.full_name || 'Unnamed'}</p>
-                                                <p className="text-xs text-muted-foreground">{parent.email}</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="py-3 px-4 text-sm text-muted-foreground">
-                                        {[parent.city, parent.country].filter(Boolean).join(', ') || '-'}
-                                    </td>
-                                    <td className="py-3 px-4 font-medium">
-                                        {parent.children_count}
-                                    </td>
-                                    <td className="py-3 px-4 font-medium">
-                                        {parent.booking_count}
-                                    </td>
-                                    <td className="py-3 px-4 text-sm text-muted-foreground">
-                                        {format(parseISO(parent.created_at), 'MMM d, yyyy')}
-                                    </td>
-                                    <td className="py-3 px-4">
-                                        <Button asChild size="sm" variant="ghost">
-                                            <Link href={getAdminHref(`/admin/users/parents/${parent.id}`)}>
-                                                <Eye className="size-4 mr-1" />
-                                                View
-                                            </Link>
-                                        </Button>
-                                    </td>
-                                </tr>
-                            ))
+                                        </td>
+                                    </tr>
+                                )
+                            })
                         )}
                     </tbody>
                 </table>

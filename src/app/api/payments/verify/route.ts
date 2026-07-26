@@ -2,8 +2,9 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { Resend } from 'resend'
 
+export const dynamic = 'force-dynamic'
+
 const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 interface PaystackVerifyResponse {
     status: boolean
@@ -241,6 +242,7 @@ export async function GET(request: Request) {
 
                 // Email Notification
                 if (teacherProfile?.email && process.env.RESEND_API_KEY) {
+                    const resend = new Resend(process.env.RESEND_API_KEY)
                     resend.emails.send({
                         from: 'STEAM Spark <notifications@steamsparkgh.com>',
                         to: teacherProfile.email,
@@ -300,12 +302,15 @@ export async function GET(request: Request) {
                     formattedDate
                 })
 
-                resend.emails.send({
-                    from: 'STEAM Spark <notifications@steamsparkgh.com>',
-                    to: parentEmail,
-                    subject: `Payment Receipt: ${gigTitle}`,
-                    html: emailHtml
-                }).catch(e => console.error('Parent email failed:', e))
+                if (process.env.RESEND_API_KEY) {
+                    const resend = new Resend(process.env.RESEND_API_KEY)
+                    resend.emails.send({
+                        from: 'STEAM Spark <notifications@steamsparkgh.com>',
+                        to: parentEmail,
+                        subject: `Payment Receipt: ${gigTitle}`,
+                        html: emailHtml
+                    }).catch(e => console.error('Parent email failed:', e))
+                }
             }
 
             // WhatsApp Notification (if parent has number)

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { createClient } from '@/lib/supabase/server'
 
-const resend = new Resend(process.env.RESEND_API_KEY || 're_123')
+export const dynamic = 'force-dynamic'
 
 export async function POST(request: Request) {
     try {
@@ -81,6 +81,7 @@ export async function POST(request: Request) {
                         <p><strong>Why they want to join:</strong> ${reason}</p>
                       `;
 
+                const resend = new Resend(process.env.RESEND_API_KEY)
                 const { data, error: emailError } = await resend.emails.send({
                     from: 'STEAM Spark <hello@steamsparkgh.com>',
                     to: ['triumphtetteh@gmail.com', 'hello@steamsparkgh.com'],
