@@ -1,20 +1,26 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Zap, Plus, DollarSign, MessageSquare } from "lucide-react"
+import { Zap, Plus, DollarSign, MessageSquare, Share2 } from "lucide-react"
 import Link from "next/link"
+import { ShareButton } from "@/components/share-button"
 
 const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "233000000000"
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi STEAMSpark Support, I am an educator with a question!")}`
 
-export function QuickActions() {
+interface QuickActionsProps {
+    userId?: string
+    fullName?: string
+}
+
+export function QuickActions({ userId, fullName }: QuickActionsProps) {
     return (
         <section>
             <div className="flex items-center gap-2 mb-4">
                 <Zap className="text-primary size-5" />
                 <h2 className="text-lg font-bold">Quick Actions</h2>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <Button variant="outline" className="h-auto p-4 flex flex-col items-start gap-4 hover:border-primary/50 hover:shadow-md transition-all group" asChild>
                     <Link href="/teacher/gigs/new">
                         <div className="bg-primary/10 group-hover:bg-primary group-hover:text-white w-10 h-10 rounded-lg flex items-center justify-center text-primary transition-colors">
@@ -32,6 +38,26 @@ export function QuickActions() {
                         <span className="font-semibold text-sm">Earnings Overview</span>
                     </Link>
                 </Button>
+
+                {/* Share Profile Action */}
+                {userId && (
+                    <div className="rounded-xl border border-border bg-card p-4 flex flex-col items-start gap-4 hover:border-purple-500/50 hover:shadow-md transition-all group">
+                        <div className="bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300 w-10 h-10 rounded-lg flex items-center justify-center">
+                            <Share2 size={24} />
+                        </div>
+                        <div className="flex flex-col text-left w-full">
+                            <span className="font-semibold text-sm">Share Profile</span>
+                            <ShareButton
+                                title={`${fullName || 'Educator'} — STEAM Spark Educator`}
+                                text={`Check out my official teaching profile on STEAM Spark!`}
+                                url={`/tutor/${userId}`}
+                                variant="ghost"
+                                size="sm"
+                                className="p-0 h-auto font-bold text-xs text-purple-600 dark:text-purple-400 hover:bg-transparent hover:underline justify-start mt-1"
+                            />
+                        </div>
+                    </div>
+                )}
 
                 <Button variant="outline" className="h-auto p-4 flex flex-col items-start gap-4 hover:border-green-500/50 hover:shadow-md transition-all group bg-green-50/20 border-green-200 dark:border-green-900/30" asChild>
                     <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">

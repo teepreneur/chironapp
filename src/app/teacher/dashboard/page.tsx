@@ -1,5 +1,6 @@
 import { Plus, AlertCircle, Clock, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ShareButton } from "@/components/share-button"
 import { StatsGrid } from "./_components/stats-grid"
 import { QuickActions } from "./_components/quick-actions"
 import { UpcomingSessions } from "./_components/upcoming-sessions"
@@ -287,7 +288,15 @@ export default async function TeacherDashboard() {
                             <h1 className="text-white text-2xl md:text-4xl font-bold leading-tight">Welcome back!</h1>
                             <p className="text-white/90 text-sm md:text-base font-medium">You have {upcomingSessions.length} upcoming sessions.</p>
                         </div>
-                        <div className="mt-4 md:mt-0 flex gap-3">
+                        <div className="mt-4 md:mt-0 flex flex-wrap gap-3">
+                            <ShareButton
+                                title={`${profile?.full_name || 'Educator'} — STEAM Spark Educator`}
+                                text={`Check out my official teaching profile on STEAM Spark!` + (profile?.subjects ? ` Specializing in ${profile.subjects.join(', ')}.` : '')}
+                                url={`/tutor/${user.id}`}
+                                variant="outline"
+                                size="lg"
+                                className="bg-white/20 text-white hover:bg-white/30 border-white/40 font-bold backdrop-blur-sm shadow-lg"
+                            />
                             <Button className="bg-white text-primary hover:bg-gray-100 font-bold shadow-lg" size="lg" asChild>
                                 <Link href="/teacher/gigs/new">
                                     <Plus className="mr-2 size-5" /> Create Course
@@ -312,7 +321,7 @@ export default async function TeacherDashboard() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Left Column */}
                 <div className="lg:col-span-2 flex flex-col gap-6">
-                    <QuickActions />
+                    <QuickActions userId={user.id} fullName={profile?.full_name} />
                     <UpcomingSessions sessions={formattedSessions} />
                     <ActivityChart sessions={activityRaw} />
                 </div>
