@@ -146,7 +146,7 @@ export default async function TutorProfilePage({ params }: ProfilePageProps) {
         : null
 
     const isVerified = !!teacher.verified_at
-    const whatsappSupportNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "15553146970"
+    const whatsappSupportNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "233544198026"
     const whatsappBookingUrl = `https://wa.me/${whatsappSupportNumber}?text=${encodeURIComponent(`Hi STEAMSpark! I want to book educator ${teacher.full_name || 'this teacher'} for my child.`)}`
 
     return (

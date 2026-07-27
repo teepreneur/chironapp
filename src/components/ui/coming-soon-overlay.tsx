@@ -22,7 +22,7 @@ export function ComingSoonOverlay({
     backPath = "/parent/dashboard",
     backText = "Back to Dashboard"
 }: ComingSoonOverlayProps) {
-    const whatsappSupportNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "15553146970"
+    const whatsappSupportNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "233544198026"
     const whatsappUrl = `https://wa.me/${whatsappSupportNumber}?text=${encodeURIComponent(`Hi STEAMSpark, I have a question about ${title}`)}`
 
     return (

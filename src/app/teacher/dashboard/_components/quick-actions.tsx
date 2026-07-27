@@ -5,7 +5,7 @@ import { Zap, Plus, DollarSign, MessageSquare, Share2 } from "lucide-react"
 import Link from "next/link"
 import { ShareButton } from "@/components/share-button"
 
-const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "15553146970"
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "233544198026"
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi STEAMSpark Support, I am an educator with a question!")}`
 
 interface QuickActionsProps {

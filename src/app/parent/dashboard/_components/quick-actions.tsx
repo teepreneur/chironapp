@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Search, Map, CalendarPlus, UserPlus, MessageSquare } from "lucide-react"
 import Link from "next/link"
 
-const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "15553146970"
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "233544198026"
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi STEAMSpark Support, I have a question!")}`
 
 const actions = [
