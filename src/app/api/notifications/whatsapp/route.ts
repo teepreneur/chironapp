@@ -16,24 +16,27 @@ const templates = {
         `🎉 Great news! Your booking for "${vars.gigTitle}" with ${vars.teacherName} has been accepted!\n\nComplete your payment to confirm: ${vars.paymentLink}\n\nQuestions? Reply to this message.`,
 
     payment_received: (vars: { gigTitle: string, studentName: string, amount: string, parentName: string }) =>
-        `💰 Payment received!\n\n${vars.parentName} has paid ${vars.amount} for "${vars.gigTitle}" (Student: ${vars.studentName}).\n\nYou can now message them directly in the app to coordinate sessions.`,
+        `💰 Payment received!\n\n${vars.parentName} has paid ${vars.amount} for "${vars.gigTitle}" (Student: ${vars.studentName}).\n\nYou can now manage your sessions in the STEAM Spark app.`,
 
     session_reminder: (vars: { gigTitle: string, studentName: string, time: string }) =>
         `⏰ Reminder: You have a session in 1 hour!\n\n"${vars.gigTitle}" with ${vars.studentName} at ${vars.time}.\n\nGood luck with your session!`,
 
     new_message: (vars: { senderName: string, preview: string }) =>
-        `💬 New message from ${vars.senderName}:\n\n"${vars.preview}"\n\nReply in the STEAM Spark app.`
+        `💬 New message from ${vars.senderName}:\n\n"${vars.preview}"\n\nReply in the STEAM Spark app.`,
+
+    custom_update: (vars: { message: string, title?: string }) =>
+        `📢 STEAM Spark Notice${vars.title ? `: ${vars.title}` : ''}\n\n${vars.message}\n\nNeed assistance? Reply directly to this message.`
 }
 
 type TemplateType = keyof typeof templates
 
 export async function POST(req: NextRequest) {
     try {
-        const { to, templateType, variables } = await req.json()
+        const { to, templateType, variables, customBody } = await req.json()
 
-        if (!to || !templateType) {
+        if (!to) {
             return NextResponse.json(
-                { error: 'Missing required fields: to, templateType' },
+                { error: 'Missing required field: to' },
                 { status: 400 }
             )
         }
@@ -46,17 +49,19 @@ export async function POST(req: NextRequest) {
             )
         }
 
-        // Get the template function
-        const templateFn = templates[templateType as TemplateType]
-        if (!templateFn) {
+        let messageBody = ""
+
+        if (customBody) {
+            messageBody = customBody
+        } else if (templateType && templates[templateType as TemplateType]) {
+            const templateFn = templates[templateType as TemplateType]
+            messageBody = templateFn(variables || {})
+        } else {
             return NextResponse.json(
-                { error: `Unknown template type: ${templateType}` },
+                { error: 'Invalid message request. Provide customBody or valid templateType.' },
                 { status: 400 }
             )
         }
-
-        // Generate message body
-        const messageBody = templateFn(variables)
 
         // Format the destination number
         const toNumber = to.startsWith('whatsapp:') ? to : `whatsapp:${to}`
