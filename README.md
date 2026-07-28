@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chiron — Teacher Management & Fintech Platform
+> Built by **Theia**
 
-## Getting Started
+**Chiron** is an all-in-one teacher management and fintech platform designed for educators across Ghana — spanning preschool, primary, secondary, university, and professional levels. Chiron empowers teachers to manage lessons, student relationships, scheduling, and direct mobile money payouts.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Key Features (Phase 1 MVP)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Teacher & Client Portals**: Dual dashboard infrastructure for educators and parent/client onboarding.
+- **Closed-Beta Client Invites**: Import and onboard existing teacher-client pairs directly.
+- **Lesson & Schedule Management**: Track recurring sessions, attendance, and session notes.
+- **Mobile Money Payments (MTN MoMo Rail)**: Seamless mobile money payment prompts via Paystack Ghana.
+- **Teacher Earnings & Payouts**: Income overview, transaction records, and automated mobile money payouts.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
+- **UI / Design**: React 19, TailwindCSS, Radix UI / shadcn components
+- **Database & Auth**: [Supabase](https://supabase.com/) (PostgreSQL & SSR Auth)
+- **Notifications**: Twilio (WhatsApp API) & Resend (Email)
+- **Document Engine**: jsPDF & jsPDF-autotable
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ⚙️ Getting Started Locally
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clone & Install Dependencies**:
+   ```bash
+   git clone https://github.com/teepreneur/Chiron.git
+   cd Chiron
+   npm install
+   ```
 
-## Deploy on Vercel
+2. **Configure Environment Variables**:
+   Copy `.env.local` template and fill in your keys:
+   ```bash
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+   NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY=your_paystack_public_key
+   PAYSTACK_SECRET_KEY=your_paystack_secret_key
+   NEXT_PUBLIC_WHATSAPP_NUMBER=233544198026
+   TWILIO_ACCOUNT_SID=your_twilio_sid
+   TWILIO_AUTH_TOKEN=your_twilio_auth_token
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Run Development Server**:
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) to view Chiron in your browser.
+
+---
+
+## 📄 License
+Copyright © 2026 **Theia**. All rights reserved.
