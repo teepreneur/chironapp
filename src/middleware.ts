@@ -2,9 +2,9 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 // Define the main marketing domain and app subdomain
-const MARKETING_DOMAINS = ['steamsparkgh.com', 'www.steamsparkgh.com']
-const APP_SUBDOMAIN = 'app.steamsparkgh.com'
-const ADMIN_SUBDOMAIN = 'admin.steamsparkgh.com'
+const MARKETING_DOMAINS = ['chironlearning.com', 'www.chironlearning.com']
+const APP_SUBDOMAIN = 'app.chironlearning.com'
+const ADMIN_SUBDOMAIN = 'admin.chironlearning.com'
 
 export async function middleware(request: NextRequest) {
     const hostname = request.headers.get('host') || ''

@@ -24,9 +24,18 @@ const steps = [
 ]
 
 const allSubjects = [
-    "Robotics", "Python Coding", "JavaScript", "Physics", "Chemistry",
-    "Biology", "Art & Design", "3D Modeling", "Electronics", "Mathematics",
-    "Engineering", "Music", "Creative Writing", "Data Science", "AI/ML"
+    "Mathematics", "English & Literature", "Physics", "Chemistry",
+    "Biology", "French & Languages", "Economics & Accounting", "History & Social Studies",
+    "Computer Science & Coding", "Music & Performing Arts", "Robotics", "Art & Graphic Design",
+    "Business & Finance", "General Science", "Primary Literacy & Numeracy"
+]
+
+const levelOptions = [
+    { id: "preschool", label: "Preschool & Early Years" },
+    { id: "primary", label: "Primary (Grades 1-6)" },
+    { id: "secondary", label: "Secondary (JHS / SHS / IGCSE)" },
+    { id: "university", label: "University & Tertiary" },
+    { id: "adult_professional", label: "Adult & Professional" },
 ]
 
 export default function TeacherSignupPage() {
@@ -45,11 +54,14 @@ export default function TeacherSignupPage() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    // Step 2: Credentials (file names only for UI)
+    // Step 2: Credentials & Payouts
     const [uploadedFiles, setUploadedFiles] = useState<string[]>([])
+    const [momoNumber, setMomoNumber] = useState("")
+    const [momoNetwork, setMomoNetwork] = useState("mtn")
 
-    // Step 3: Expertise
-    const [selectedSubjects, setSelectedSubjects] = useState<string[]>(["Robotics", "Python Coding"])
+    // Step 3: Expertise & Levels
+    const [selectedSubjects, setSelectedSubjects] = useState<string[]>(["Mathematics", "English & Literature"])
+    const [selectedLevels, setSelectedLevels] = useState<string[]>(["primary", "secondary"])
     const [bio, setBio] = useState("")
     const [subjectInput, setSubjectInput] = useState("")
 
@@ -112,6 +124,9 @@ export default function TeacherSignupPage() {
                 role: 'teacher',
                 bio: bio,
                 subjects: selectedSubjects,
+                teaching_levels: selectedLevels,
+                momo_number: momoNumber,
+                momo_network: momoNetwork,
                 verification_status: 'pending'
             }).eq('id', authData.user.id)
 
@@ -197,7 +212,7 @@ export default function TeacherSignupPage() {
                     {/* Headline */}
                     <div className="mb-10">
                         <h1 className="text-3xl md:text-4xl font-bold mb-3">Let's get your profile live.</h1>
-                        <p className="text-muted-foreground text-lg">Join thousands of STEAM educators sparking curiosity worldwide.</p>
+                        <p className="text-muted-foreground text-lg">Join top educators building independent tutoring businesses with Chiron by Theia.</p>
                     </div>
 
                     {error && (

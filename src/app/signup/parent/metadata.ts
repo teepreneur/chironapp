@@ -1,10 +1,11 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "Parent Sign Up",
-    description: "Create a STEAM Spark parent account. Find expert tutors, track your child or teen's progress, and unlock personalized STEAM education pathways.",
+    title: "Client & Parent Sign Up",
+    description: "Create a Chiron account. Connect with verified tutors, track learning progress, and manage sessions and Mobile Money payments easily.",
     openGraph: {
-        title: "Parent Sign Up | STEAM Spark",
-        description: "Create a free parent account and start your child or teen's STEAM learning journey today.",
+        title: "Client Registration | Chiron by Theia",
+        description: "Join Chiron to access personalized tutoring across all academic levels.",
     },
 }
+

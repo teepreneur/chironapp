@@ -55,7 +55,7 @@ export async function POST(request: Request) {
                     }
                 ]
             },
-            channels: ['card', 'mobile_money', 'bank'] // Support all payment methods
+            channels: ['mobile_money', 'card', 'bank'] // Prioritize Ghana Mobile Money (MTN, Telecel, AirtelTigo)
         }
 
         // If teacher_amount is provided, fetch teacher's subaccount and add split

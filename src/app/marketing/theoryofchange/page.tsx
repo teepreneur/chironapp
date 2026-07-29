@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { Logo } from "@/components/ui/logo";
 import {
     ArrowRight,
     Lightbulb,
@@ -27,22 +28,22 @@ export default function TheoryOfChangePage() {
             <nav className="sticky top-0 z-50 w-full border-b border-slate-200/60 bg-white/80 backdrop-blur-md print:hidden">
                 <div className="container mx-auto px-6 h-20 flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-2 group">
-                        <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
-                            <Lightbulb className="text-white w-6 h-6" />
+                        <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform">
+                            <Logo size={28} variant="icon" />
                         </div>
-                        <span className="text-xl font-bold tracking-tight">STEAM Spark</span>
+                        <span className="text-xl font-bold tracking-tight">Chiron</span>
                     </Link>
                     <div className="flex items-center gap-6">
                         <button
                             onClick={handlePrint}
-                            className="flex items-center gap-2 text-sm font-bold text-slate-700 hover:text-blue-600 transition-colors"
+                            className="flex items-center gap-2 text-sm font-bold text-slate-700 hover:text-primary transition-colors"
                         >
                             <Download className="w-4 h-4" />
                             Download PDF
                         </button>
                         <Link
                             href="/"
-                            className="text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors flex items-center gap-1 group"
+                            className="text-sm font-medium text-slate-500 hover:text-primary transition-colors flex items-center gap-1 group"
                         >
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                             Home
@@ -54,14 +55,14 @@ export default function TheoryOfChangePage() {
             <main className="container mx-auto px-6 py-12 md:py-24 max-w-7xl">
                 {/* Hero Section */}
                 <section className="max-w-4xl mx-auto text-center mb-24 print:mb-12">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-primary text-[10px] font-black uppercase tracking-[0.2em] mb-6">
                         Impact Framework
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-8 text-slate-900 leading-[1.1]">
                         Our Theory <br /><span className="text-slate-400 font-medium">of Change</span>
                     </h1>
                     <p className="text-xl md:text-2xl text-slate-500 leading-relaxed max-w-3xl mx-auto font-medium">
-                        Democratizing world-class STEAM education across Africa, empowering a generation of innovative problem-solvers and educational entrepreneurs.
+                        Democratizing world-class personal tutoring & client management across Africa, empowering educators and lifelong learners.
                     </p>
                 </section>
 
@@ -261,7 +262,7 @@ export default function TheoryOfChangePage() {
             </main>
 
             <footer className="mt-24 pb-12 text-center text-slate-400 text-xs font-bold uppercase tracking-widest print:mt-12 print:text-black">
-                <p>© {new Date().getFullYear()} STEAM Spark // Democratizing World-Class Education Across Africa</p>
+                <p>© {new Date().getFullYear()} Chiron by Theia // Personal Tutoring & Client Management</p>
             </footer>
 
             {/* Global Print Styles */}

@@ -120,7 +120,7 @@ export default function SignupPage() {
                     </div>
                     <CardTitle className="text-2xl font-bold">Create an account</CardTitle>
                     <CardDescription>
-                        Join STEAM Spark as a parent or educator
+                        Join Chiron as a client, parent, or educator
                     </CardDescription>
                 </CardHeader>
                 <form onSubmit={handleSignup}>

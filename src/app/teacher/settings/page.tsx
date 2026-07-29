@@ -296,7 +296,7 @@ export default function SettingsPage() {
                                 <div className="flex items-center gap-2 text-muted-foreground mt-1">
                                     <span className="text-sm font-medium">{email}</span>
                                     <span className="mx-1">|</span>
-                                    <span className="text-sm">STEAM Spark Educator</span>
+                                    <span className="text-sm">Chiron Educator</span>
                                 </div>
                             </div>
                             <Button variant="outline" asChild>
@@ -528,7 +528,7 @@ export default function SettingsPage() {
                             </Badge>
                         </div>
                         <p className="text-sm text-muted-foreground mb-6">
-                            To ensure student safety, all STEAM Spark educators must complete a background check by providing the following documents.
+                            To ensure learner safety, all Chiron educators must complete a background check by providing the following documents.
                         </p>
 
                         <div className="space-y-6">

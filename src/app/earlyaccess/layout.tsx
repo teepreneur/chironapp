@@ -8,8 +8,8 @@ const lexend = Lexend({
 })
 
 export const metadata: Metadata = {
-    title: 'Early Access | STEAM Spark',
-    description: 'Join the waiting list for STEAM Spark.',
+    title: 'Early Access | Chiron (by Theia)',
+    description: 'Request early access access for Chiron by Theia.',
 }
 
 export default function EarlyAccessLayout({

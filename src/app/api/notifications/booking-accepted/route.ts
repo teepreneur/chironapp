@@ -40,24 +40,24 @@ export async function POST(request: NextRequest) {
             try {
                 const resend = new Resend(process.env.RESEND_API_KEY)
                 await resend.emails.send({
-                    from: 'STEAM Spark <notifications@steamsparkgh.com>',
+                    from: 'Chiron <notifications@chironlearning.com>',
                     to: parentEmail,
                     subject: `Booking Accepted: ${gigTitle}`,
                     html: `
                         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
-                            <h2 style="color: #2563eb;">Great news! Your booking has been accepted 🎉</h2>
-                            <p>Hi ${parentName || 'Parent'},</p>
+                            <h2 style="color: #0b6e4f;">Great news! Your booking has been accepted 🎉</h2>
+                            <p>Hi ${parentName || 'Client'},</p>
                             <p><strong>${teacherName || 'The teacher'}</strong> has accepted the booking for <strong>${studentName}</strong> in the course "<strong>${gigTitle}</strong>".</p>
                             <p>To confirm your sessions, please complete the payment using the link below:</p>
                             <div style="margin: 30px 0;">
                                 <a href="${appUrl}/parent/booking/${bookingId}/payment" 
-                                   style="background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">
+                                   style="background-color: #0b6e4f; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">
                                     Complete Payment
                                 </a>
                             </div>
                             <p style="color: #64748b; font-size: 14px;">After payment, you'll be able to message the teacher directly.</p>
                             <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
-                            <p style="color: #94a3b8; font-size: 12px;">STEAM Spark - Empowering the next generation of innovators.</p>
+                            <p style="color: #94a3b8; font-size: 12px;">Chiron — Personal Tutoring & Client Management by Theia.</p>
                         </div>
                     `
                 })

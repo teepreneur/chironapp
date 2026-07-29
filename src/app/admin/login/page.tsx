@@ -81,7 +81,7 @@ export default function AdminLoginPage() {
                         <ShieldCheck className="size-8 text-primary" />
                     </div>
                     <h1 className="text-2xl font-bold text-white">Admin Portal</h1>
-                    <p className="text-slate-400 mt-1">STEAM Spark Administration</p>
+                    <p className="text-slate-400 mt-1">Chiron Administration</p>
                 </div>
 
                 {/* Login Form */}
@@ -95,7 +95,7 @@ export default function AdminLoginPage() {
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                placeholder="admin@steamsparkgh.com"
+                                placeholder="admin@chironlearning.com"
                                 required
                                 className="w-full"
                             />

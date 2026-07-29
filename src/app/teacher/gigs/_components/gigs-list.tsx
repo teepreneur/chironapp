@@ -227,7 +227,7 @@ export function GigsList({ initialGigs }: GigsListProps) {
                                         {/* Share */}
                                         <ShareButton
                                             title={gig.title}
-                                            text={`Check out my course on STEAM Spark: ${gig.title}!`}
+                                            text={`Check out my course on Chiron: ${gig.title}!`}
                                             url={`/parent/book/${gig.id}`}
                                             variant="secondary"
                                             size="icon"

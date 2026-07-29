@@ -1,11 +1,11 @@
 {
-    "name": "STEAM Spark",
-    "short_name": "STEAM Spark",
-    "description": "Personalized STEAM Education for Kids",
+    "name": "Chiron by Theia",
+    "short_name": "Chiron",
+    "description": "Personal Tutoring & Client Management Engine",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#3899fa",
+    "theme_color": "#0B6E4F",
     "icons": [
         {
             "src": "/favicon-16x16.png",

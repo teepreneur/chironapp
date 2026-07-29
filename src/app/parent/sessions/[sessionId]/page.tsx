@@ -317,7 +317,7 @@ export default function ParentSessionDetailPage({ params }: { params: Promise<{ 
                                 Report Issue
                             </Button>
                             <Button variant="outline" className="flex-1 gap-2" asChild>
-                                <a href="mailto:support@steamspark.com">
+                                <a href="mailto:support@chironlearning.com">
                                     <Headphones className="size-4" />
                                     Contact Support
                                 </a>

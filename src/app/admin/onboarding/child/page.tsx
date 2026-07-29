@@ -136,7 +136,7 @@ function OnboardingContent() {
                     <div>
                         <h1 className="text-2xl font-bold">Awesome!</h1>
                         <p className="text-muted-foreground mt-2">
-                            {parentName}, your child's profile has been updated. Our STEAM Spark instructors are ready to help!
+                            {parentName}, your learner's profile has been updated. Our Chiron tutors are ready to help!
                         </p>
                     </div>
                     <Button className="w-full font-bold shadow-lg" onClick={() => router.push('/login')}>

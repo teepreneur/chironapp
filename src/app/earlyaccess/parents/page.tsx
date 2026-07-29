@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, CheckCircle, Sparkles, Users, Target, Rocket } from 'lucide-react'
 import ParentInterestForm from './ParentInterestForm'
+import { Logo } from '@/components/ui/logo'
 
 export default function ParentEarlyAccessPage() {
     const scrollToForm = (e: React.MouseEvent) => {
@@ -19,23 +20,14 @@ export default function ParentEarlyAccessPage() {
             {/* Header */}
             <header className="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-                    <Link href="/" className="flex items-center space-x-2">
-                        <Image
-                            src="/apple-icon-v2.png"
-                            alt="STEAM Spark Ghana"
-                            width={40}
-                            height={40}
-                            className="w-10 h-10 rounded-lg"
-                        />
-                        <span className="text-2xl font-bold text-slate-800">STEAM Spark Ghana</span>
-                    </Link>
+                    <Logo size={32} variant="full" />
                     <nav className="hidden md:flex items-center space-x-6">
-                        <a href="/login" className="text-slate-600 hover:text-blue-500 font-medium">
+                        <a href="/login" className="text-slate-600 hover:text-emerald-700 font-medium">
                             Sign In
                         </a>
                         <button
                             onClick={scrollToForm}
-                            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition font-medium"
+                            className="bg-emerald-700 text-white px-6 py-2 rounded-lg hover:bg-emerald-800 transition font-medium"
                         >
                             Get Started
                         </button>
@@ -48,15 +40,14 @@ export default function ParentEarlyAccessPage() {
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-6 tracking-tight">
-                            Shape the Future of{' '}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">
-                                STEAM Education
+                            Personal Tutoring &{' '}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-teal-600">
+                                Client Management
                             </span>
                         </h1>
 
                         <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-                            Join the first 100 families to access Ghana's revolutionary STEAM education platform.
-                            Co-create the perfect learning experience for your child and give them a head start in the future of work.
+                            Join Ghana's premier platform for educators, clients, and families. Streamlined session scheduling, transparent mobile money payments, and personalized learning tracking across all academic levels.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4">
@@ -222,13 +213,13 @@ export default function ParentEarlyAccessPage() {
                         {/* Step 1 */}
                         <div className="relative z-10">
                             <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-lg shadow-blue-500/20">
+                                <div className="w-12 h-12 bg-emerald-700 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 shadow-lg shadow-emerald-700/20">
                                     1
                                 </div>
                                 <h3 className="text-xl font-bold text-slate-800 mb-3">Sign Up</h3>
                                 <p className="text-slate-600">
-                                    Create your free account using code <strong className="text-blue-500">SPARK100</strong>.
-                                    Add your child's profile and learning goals.
+                                    Create your free account using code <strong className="text-emerald-700">CHIRON100</strong>.
+                                    Add your learner's profile and education goals.
                                 </p>
                             </div>
                         </div>
@@ -382,8 +373,8 @@ export default function ParentEarlyAccessPage() {
 
                             <p className="mt-8 text-sm text-white/80">
                                 Questions? Email us at{' '}
-                                <a href="mailto:hello@steamsparkgh.com" className="underline hover:text-white">
-                                    hello@steamsparkgh.com
+                                <a href="mailto:support@chironlearning.com" className="underline hover:text-white">
+                                    support@chironlearning.com
                                 </a>
                             </p>
                         </div>
@@ -403,14 +394,7 @@ export default function ParentEarlyAccessPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <div className="flex items-center space-x-2 mb-4 md:mb-0">
-                            <Image
-                                src="/apple-icon-v2.png"
-                                alt="STEAM Spark Ghana"
-                                width={32}
-                                height={32}
-                                className="w-8 h-8 rounded-lg"
-                            />
-                            <span className="text-white font-semibold">STEAM Spark Ghana</span>
+                            <Logo size={32} variant="full" />
                         </div>
                         <div className="flex space-x-6">
                             <a href="/about" className="hover:text-white transition">
@@ -425,7 +409,7 @@ export default function ParentEarlyAccessPage() {
                         </div>
                     </div>
                     <div className="mt-8 text-center text-sm">
-                        © 2026 STEAM Spark. All rights reserved.
+                        © 2026 Chiron by Theia. All rights reserved.
                     </div>
                 </div>
             </footer>

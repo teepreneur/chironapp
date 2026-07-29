@@ -156,30 +156,17 @@ export default function ParentSignupPage() {
             {/* Main Content */}
             <div className="flex-1 flex overflow-hidden">
                 {/* Left Visual */}
-                <div className="hidden lg:flex w-1/2 relative bg-[#111418] flex-col justify-end p-16">
-                    <div className="absolute inset-0 z-0">
-                        <div
-                            className="w-full h-full bg-cover bg-center opacity-60 mix-blend-overlay"
-                            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop')" }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#101922] via-[#101922]/80 to-transparent" />
-                    </div>
-
+                <div className="hidden lg:flex w-1/2 relative bg-[#14171A] flex-col justify-end p-16">
                     <div className="relative z-10 max-w-lg">
-                        <h1 className="text-4xl font-black text-white leading-tight mb-6">
-                            Watch your child discover their passion
+                        <div className="mb-6">
+                            <Logo size={48} variant="full" />
+                        </div>
+                        <h1 className="text-4xl font-extrabold text-white leading-tight mb-4">
+                            Streamlined Tutoring & Client Management
                         </h1>
                         <p className="text-lg text-gray-300 font-light leading-relaxed">
-                            Join thousands of parents using STEAM Spark to find the best robotics, coding, and art resources tailored to their child's unique interests.
+                            Join Chiron by Theia to easily register as a client or parent, schedule sessions with professional educators, and pay securely via Ghana Mobile Money.
                         </p>
-                        <div className="mt-8 flex items-center gap-3">
-                            <div className="flex -space-x-3">
-                                <img alt="User" className="w-10 h-10 rounded-full border-2 border-[#101922]" src="https://i.pravatar.cc/100?img=4" />
-                                <img alt="User" className="w-10 h-10 rounded-full border-2 border-[#101922]" src="https://i.pravatar.cc/100?img=5" />
-                                <img alt="User" className="w-10 h-10 rounded-full border-2 border-[#101922]" src="https://i.pravatar.cc/100?img=6" />
-                            </div>
-                            <span className="text-sm font-medium text-white">Trusted by 10,000+ families</span>
-                        </div>
                     </div>
                 </div>
 

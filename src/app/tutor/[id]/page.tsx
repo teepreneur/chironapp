@@ -30,17 +30,17 @@ export async function generateMetadata({ params }: ProfilePageProps): Promise<Me
 
     if (!profile) {
         return {
-            title: 'STEAM Spark Educator Profile',
-            description: 'Discover verified STEAM educators in Ghana on STEAM Spark.'
+            title: 'Chiron Educator Profile',
+            description: 'Discover verified educators on Chiron by Theia.'
         }
     }
 
     const teacher = profile as Tables<'profiles'>
-    const name = teacher.full_name || 'STEAM Spark Educator'
+    const name = teacher.full_name || 'Chiron Educator'
     const isVerified = !!teacher.verified_at
     const verificationTag = isVerified ? ' (Verified Educator)' : ''
     
-    const title = `${name} — STEAM Spark Educator${verificationTag}`
+    const title = `${name} — Chiron Educator${verificationTag}`
 
     const subjectsStr = teacher.subjects && teacher.subjects.length > 0
         ? ` Specializing in ${teacher.subjects.join(', ')}.`
@@ -50,12 +50,12 @@ export async function generateMetadata({ params }: ProfilePageProps): Promise<Me
         : ''
     const bioExcerpt = teacher.bio 
         ? (teacher.bio.length > 150 ? `${teacher.bio.slice(0, 150)}...` : teacher.bio)
-        : 'Igniting curiosity in Science, Technology, Engineering, Art, and Math.'
+        : 'Empowering students across all academic levels.'
 
-    const description = `${isVerified ? '✓ Verified STEAM Spark Educator. ' : ''}${bioExcerpt}${subjectsStr}${locationStr}`
+    const description = `${isVerified ? '✓ Verified Chiron Educator. ' : ''}${bioExcerpt}${subjectsStr}${locationStr}`
 
     const avatarUrl = teacher.avatar_url || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80'
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.steamsparkgh.com'
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.chironlearning.com'
     const pageUrl = `${appUrl}/tutor/${id}`
 
     return {
@@ -65,14 +65,14 @@ export async function generateMetadata({ params }: ProfilePageProps): Promise<Me
             title,
             description,
             url: pageUrl,
-            siteName: 'STEAM Spark',
+            siteName: 'Chiron',
             type: 'profile',
             images: [
                 {
                     url: avatarUrl,
                     width: 800,
                     height: 800,
-                    alt: `${name} — STEAM Spark Educator`
+                    alt: `${name} — Chiron Educator`
                 }
             ]
         },
@@ -147,10 +147,10 @@ export default async function TutorProfilePage({ params }: ProfilePageProps) {
 
     const isVerified = !!teacher.verified_at
     const whatsappSupportNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "233544198026"
-    const whatsappBookingUrl = `https://wa.me/${whatsappSupportNumber}?text=${encodeURIComponent(`Hi STEAMSpark! I want to book educator ${teacher.full_name || 'this teacher'} for my child.`)}`
+    const whatsappBookingUrl = `https://wa.me/${whatsappSupportNumber}?text=${encodeURIComponent(`Hi Chiron Support! I want to book educator ${teacher.full_name || 'this teacher'}.`)}`
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen bg-background font-sans">
             {/* Top Navigation Bar */}
             <div className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
                 <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-2">
@@ -159,8 +159,8 @@ export default async function TutorProfilePage({ params }: ProfilePageProps) {
                     </Link>
                     <div className="flex items-center gap-2 sm:gap-3">
                         <ShareButton
-                            title={`${teacher.full_name} — STEAM Spark Educator`}
-                            text={`Check out ${teacher.full_name}'s official teaching profile on STEAM Spark!` + (teacher.subjects ? ` Expert in ${teacher.subjects.join(', ')}.` : '')}
+                            title={`${teacher.full_name} — Chiron Educator`}
+                            text={`Check out ${teacher.full_name}'s official teaching profile on Chiron!` + (teacher.subjects ? ` Expert in ${teacher.subjects.join(', ')}.` : '')}
                             url={`/tutor/${teacher.id}`}
                             variant="outline"
                             size="sm"
@@ -181,10 +181,10 @@ export default async function TutorProfilePage({ params }: ProfilePageProps) {
                     <div className="lg:col-span-1 space-y-6">
                         <div className="bg-card rounded-2xl border border-border overflow-hidden shadow-sm sticky top-24">
                             {/* Profile Header Background */}
-                            <div className="h-28 bg-gradient-to-br from-primary/30 via-blue-500/20 to-purple-500/20 relative">
+                            <div className="h-28 bg-gradient-to-br from-primary/30 via-emerald-600/20 to-teal-500/20 relative">
                                 <div className="absolute top-3 right-3">
                                     <Badge className="bg-background/80 backdrop-blur-md text-foreground border-border font-bold text-xs">
-                                        STEAM Spark Educator
+                                        Chiron Educator
                                     </Badge>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@ export default async function TutorProfilePage({ params }: ProfilePageProps) {
                                         )}
                                     </div>
                                     {isVerified && (
-                                        <div className="absolute -bottom-2 -right-2 p-1.5 bg-green-500 rounded-lg border-2 border-card shadow-sm" title="Verified STEAM Spark Educator">
+                                        <div className="absolute -bottom-2 -right-2 p-1.5 bg-green-500 rounded-lg border-2 border-card shadow-sm" title="Verified Chiron Educator">
                                             <BadgeCheck className="size-6 text-white" />
                                         </div>
                                     )}
@@ -218,7 +218,7 @@ export default async function TutorProfilePage({ params }: ProfilePageProps) {
                                         )}
                                     </div>
                                     <p className="text-muted-foreground font-medium text-sm">
-                                        STEAM Spark Educator {teacher.city && teacher.country ? `• ${teacher.city}, ${teacher.country}` : ''}
+                                        Chiron Educator {teacher.city && teacher.country ? `• ${teacher.city}, ${teacher.country}` : ''}
                                     </p>
                                 </div>
 
@@ -263,8 +263,8 @@ export default async function TutorProfilePage({ params }: ProfilePageProps) {
                                     )}
 
                                     <ShareButton
-                                        title={`${teacher.full_name} — STEAM Spark Educator`}
-                                        text={`Check out ${teacher.full_name}'s official teaching profile on STEAM Spark!`}
+                                        title={`${teacher.full_name} — Chiron Educator`}
+                                        text={`Check out ${teacher.full_name}'s official teaching profile on Chiron!`}
                                         url={`/tutor/${teacher.id}`}
                                         variant="ghost"
                                         className="w-full font-bold gap-2 text-muted-foreground hover:text-foreground"
@@ -278,7 +278,7 @@ export default async function TutorProfilePage({ params }: ProfilePageProps) {
                                             <div className="size-7 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 shrink-0">
                                                 <BadgeCheck className="size-4" />
                                             </div>
-                                            <span>Verified STEAM Spark Educator</span>
+                                            <span>Verified Chiron Educator</span>
                                         </div>
                                     )}
                                     {teacher.cv_url && (
@@ -391,8 +391,8 @@ export default async function TutorProfilePage({ params }: ProfilePageProps) {
                                                     <Link href={`/parent/book/${gig.id}`}>Book Course</Link>
                                                 </Button>
                                                 <ShareButton
-                                                    title={`${gig.title} — STEAM Spark Course`}
-                                                    text={`Sign up for this course: ${gig.title} taught by ${teacher.full_name} on STEAM Spark!`}
+                                                    title={`${gig.title} — Chiron Course`}
+                                                    text={`Sign up for this course: ${gig.title} taught by ${teacher.full_name} on Chiron!`}
                                                     url={`/parent/book/${gig.id}`}
                                                     variant="ghost"
                                                     size="icon"

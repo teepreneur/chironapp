@@ -18,7 +18,7 @@ export default function UnauthorizedPage() {
                 </p>
                 <div className="space-y-3">
                     <Button asChild className="w-full">
-                        <Link href="https://app.steamsparkgh.com">
+                        <Link href="/">
                             <ArrowLeft className="size-4 mr-2" />
                             Return to App
                         </Link>

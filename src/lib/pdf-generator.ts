@@ -24,7 +24,7 @@ export async function generateInvoice(data: InvoiceData) {
     const doc = new jsPDF() as any
 
     // Colors
-    const primaryColor = [79, 70, 229] // Indigo-600
+    const primaryColor = [11, 110, 79] // Chiron Emerald #0B6E4F
 
     // Header / Branding
     doc.setFillColor(249, 250, 251)
@@ -33,12 +33,12 @@ export async function generateInvoice(data: InvoiceData) {
     doc.setFontSize(24)
     doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
     doc.setFont("helvetica", "bold")
-    doc.text("STEAM SPARK", 20, 25)
+    doc.text("CHIRON", 20, 25)
     
     doc.setFontSize(10)
     doc.setTextColor(107, 114, 128)
     doc.setFont("helvetica", "normal")
-    doc.text("Igniting Curiosity through STEAM", 20, 32)
+    doc.text("Personal Tutoring & Client Management by Theia", 20, 32)
 
     doc.setFontSize(18)
     doc.setTextColor(31, 41, 55)
@@ -112,7 +112,7 @@ export async function generateInvoice(data: InvoiceData) {
     doc.text("Payment Notes:", 20, finalY + 45)
     doc.setFont("helvetica", "normal")
     doc.text("Please complete payment within 48 hours to secure your booking.", 20, finalY + 52)
-    doc.text("Payments should be made via the STEAM Spark portal or bank transfer.", 20, finalY + 57)
+    doc.text("Payments should be made via the Chiron portal or direct Mobile Money.", 20, finalY + 57)
 
     if (data.location) {
         doc.setFont("helvetica", "bold")
@@ -122,7 +122,7 @@ export async function generateInvoice(data: InvoiceData) {
     }
 
     doc.setFontSize(8)
-    doc.text("Thank you for choosing STEAM Spark!", 105, 285, { align: 'center' })
+    doc.text("Thank you for choosing Chiron!", 105, 285, { align: 'center' })
 
     // Save
     doc.save(`Invoice_${data.invoiceNumber}.pdf`)
@@ -131,7 +131,7 @@ export async function generateInvoice(data: InvoiceData) {
 export async function generateBookingConfirmation(data: InvoiceData) {
     // Similar to invoice but more focused on the student's journey and welcome
     const doc = new jsPDF() as any
-    const primaryColor = [16, 185, 129] // Emerald-500 for confirmation
+    const primaryColor = [11, 110, 79] // Emerald-500 for confirmation
 
     doc.setFillColor( primaryColor[0], primaryColor[1], primaryColor[2] )
     doc.rect(0, 0, 210, 60, 'F')
@@ -142,7 +142,7 @@ export async function generateBookingConfirmation(data: InvoiceData) {
     doc.text("CONGRATULATIONS!", 105, 30, { align: 'center' })
     
     doc.setFontSize(14)
-    doc.text("Your STEAM Journey Begins Now", 105, 45, { align: 'center' })
+    doc.text("Your Learning Journey Begins Now", 105, 45, { align: 'center' })
 
     doc.setTextColor(31, 41, 55)
     doc.setFontSize(16)
@@ -150,7 +150,7 @@ export async function generateBookingConfirmation(data: InvoiceData) {
 
     doc.setFontSize(11)
     doc.setFont("helvetica", "normal")
-    const welcomeText = `We are thrilled to embark on this learning adventure with you. Your teacher, ${data.teacherName}, is preparing a curriculum designed to ignite your curiosity and build your skills in ${data.subject}.`
+    const welcomeText = `We are thrilled to embark on this learning adventure with you. Your teacher, ${data.teacherName}, is preparing a curriculum tailored to your goals in ${data.subject}.`
     doc.text(doc.splitTextToSize(welcomeText, 170), 20, 95)
 
     // Schedule Card
@@ -174,7 +174,7 @@ export async function generateBookingConfirmation(data: InvoiceData) {
         "1. Your teacher will reach out to introduce themselves.",
         "2. You'll receive a meeting link (if online) or confirm location details (if in-person).",
         "3. Get your materials ready for your first session!",
-        "4. Track your progress in the STEAM Spark Parent Portal."
+        "4. Track your progress in the Chiron Portal."
     ]
     steps.forEach((step, i) => {
         doc.text(step, 20, 195 + (i * 10))
@@ -182,7 +182,7 @@ export async function generateBookingConfirmation(data: InvoiceData) {
 
     doc.setFontSize(8)
     doc.setTextColor(107, 114, 128)
-    doc.text("STEAM Spark - Empowering the next generation of innovators.", 105, 285, { align: 'center' })
+    doc.text("Chiron — Personal Tutoring & Client Management by Theia", 105, 285, { align: 'center' })
 
     doc.save(`Confirmation_${data.studentName.replace(' ', '_')}.pdf`)
 }

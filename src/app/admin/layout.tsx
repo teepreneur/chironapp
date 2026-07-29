@@ -129,7 +129,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     </div>
                     {sidebarOpen && (
                         <div>
-                            <h1 className="font-bold text-lg">STEAM Spark</h1>
+                            <h1 className="font-bold text-lg">Chiron</h1>
                             <p className="text-xs text-slate-400">Admin Portal</p>
                         </div>
                     )}

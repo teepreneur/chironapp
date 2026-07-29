@@ -6,7 +6,7 @@ import Link from "next/link"
 import { ShareButton } from "@/components/share-button"
 
 const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "233544198026"
-const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi STEAMSpark Support, I am an educator with a question!")}`
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi Chiron Support, I am an educator with a question!")}`
 
 interface QuickActionsProps {
     userId?: string
@@ -32,7 +32,7 @@ export function QuickActions({ userId, fullName }: QuickActionsProps) {
 
                 <Button variant="outline" className="h-auto p-4 flex flex-col items-start gap-4 hover:border-primary/50 hover:shadow-md transition-all group" asChild>
                     <Link href="/teacher/earnings">
-                        <div className="bg-blue-100 dark:bg-blue-900/30 text-primary group-hover:bg-primary group-hover:text-white w-10 h-10 rounded-lg flex items-center justify-center transition-colors">
+                        <div className="bg-emerald-100 dark:bg-emerald-900/30 text-primary group-hover:bg-primary group-hover:text-white w-10 h-10 rounded-lg flex items-center justify-center transition-colors">
                             <DollarSign size={24} />
                         </div>
                         <span className="font-semibold text-sm">Earnings Overview</span>
@@ -41,19 +41,19 @@ export function QuickActions({ userId, fullName }: QuickActionsProps) {
 
                 {/* Share Profile Action */}
                 {userId && (
-                    <div className="rounded-xl border border-border bg-card p-4 flex flex-col items-start gap-4 hover:border-purple-500/50 hover:shadow-md transition-all group">
-                        <div className="bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300 w-10 h-10 rounded-lg flex items-center justify-center">
+                    <div className="rounded-xl border border-border bg-card p-4 flex flex-col items-start gap-4 hover:border-emerald-500/50 hover:shadow-md transition-all group">
+                        <div className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 w-10 h-10 rounded-lg flex items-center justify-center">
                             <Share2 size={24} />
                         </div>
                         <div className="flex flex-col text-left w-full">
                             <span className="font-semibold text-sm">Share Profile</span>
                             <ShareButton
-                                title={`${fullName || 'Educator'} — STEAM Spark Educator`}
-                                text={`Check out my official teaching profile on STEAM Spark!`}
+                                title={`${fullName || 'Educator'} — Chiron Educator`}
+                                text={`Check out my official teaching profile on Chiron!`}
                                 url={`/tutor/${userId}`}
                                 variant="ghost"
                                 size="sm"
-                                className="p-0 h-auto font-bold text-xs text-purple-600 dark:text-purple-400 hover:bg-transparent hover:underline justify-start mt-1"
+                                className="p-0 h-auto font-bold text-xs text-emerald-600 dark:text-emerald-400 hover:bg-transparent hover:underline justify-start mt-1"
                             />
                         </div>
                     </div>

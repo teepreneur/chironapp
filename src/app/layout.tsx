@@ -1,34 +1,33 @@
 import type { Metadata } from "next";
-import { Lexend } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 
-const lexend = Lexend({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-lexend",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://steamsparkgh.com"),
+  metadataBase: new URL("https://chironlearning.com"),
   title: {
-    template: "%s | STEAM Spark",
-    default: "STEAM Spark - Personalized STEAM Education",
+    template: "%s | Chiron",
+    default: "Chiron | Personal Tutoring & Client Management by Theia",
   },
-  description: "STEAM Spark connects curious minds with expert mentors. Personalized learning paths in Science, Technology, Engineering, Arts, and Math for kids and teens ages 5-18.",
-  keywords: ["STEAM education", "tutoring", "online learning", "kids and teens education", "Ghana education", "coding for kids and teens", "math tutoring", "science tutoring"],
-  authors: [{ name: "STEAM Spark" }],
-  creator: "STEAM Spark",
-  publisher: "STEAM Spark",
+  description: "Chiron provides professional teachers and client pairs with a streamlined tutoring, scheduling, and mobile money payment platform.",
+  keywords: ["Chiron", "tutoring", "client management", "education platform", "Ghana tutoring", "private tutoring", "mobile money payments"],
+  authors: [{ name: "Theia" }],
+  creator: "Theia",
+  publisher: "Theia",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   icons: {
-    icon: "/icon-spark-v2.png",
-    apple: "/apple-icon-v2.png",
+    icon: "/brand/chiron-icon.svg",
+    apple: "/brand/chiron-icon.svg",
   },
-  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -39,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${lexend.variable} font-sans antialiased`}
+        className={`${inter.variable} font-sans antialiased`}
       >
         {children}
         <Analytics />

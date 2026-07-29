@@ -123,7 +123,7 @@ export default function TutorsList({ initialGigs, parentLocation }: TutorsListPr
                         {showOnlyRecommended ? (
                             <>Your <span className="text-primary">Recommended Class</span></>
                         ) : (
-                            <>Find the perfect spark for your <span className="text-primary">learning journey</span></>
+                            <>Find the perfect tutor for your <span className="text-primary">learning journey</span></>
                         )}
                     </h1>
                     <p className="text-muted-foreground text-base md:text-lg font-normal">

@@ -66,7 +66,7 @@ async function initiateBulkTransfer(transfers: Array<{
             transfers: transfers.map(t => ({
                 amount: t.amount,
                 recipient: t.recipient,
-                reason: t.reason || 'Teacher payout from STEAM Spark',
+                reason: t.reason || 'Teacher payout from Chiron',
                 reference: t.reference
             }))
         })

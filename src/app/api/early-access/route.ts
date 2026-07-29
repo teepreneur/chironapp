@@ -83,12 +83,12 @@ export async function POST(request: Request) {
 
                 const resend = new Resend(process.env.RESEND_API_KEY)
                 const { data, error: emailError } = await resend.emails.send({
-                    from: 'STEAM Spark <hello@steamsparkgh.com>',
-                    to: ['triumphtetteh@gmail.com', 'hello@steamsparkgh.com'],
+                    from: 'Chiron <hello@chironlearning.com>',
+                    to: ['triumphtetteh@gmail.com'],
                     subject: emailSubject,
                     html: `
                         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-                            <h1 style="color: #2563eb;">New ${isParent ? 'Parent' : 'Teacher'} Application</h1>
+                            <h1 style="color: #0b6e4f;">New ${isParent ? 'Client' : 'Teacher'} Application</h1>
                             <div style="background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0;">
                                 <p><strong>Name:</strong> ${name}</p>
                                 <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>

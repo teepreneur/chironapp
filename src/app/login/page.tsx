@@ -197,41 +197,17 @@ export default function LoginPage() {
                     </div>
 
                     <div className="relative z-10 max-w-lg">
-                        {/* Floating Icons */}
-                        <div className="flex gap-2 mb-6">
-                            <span className="inline-flex items-center justify-center size-12 rounded-full bg-primary/20 text-primary backdrop-blur-sm border border-primary/30">
-                                <Rocket className="size-5" />
-                            </span>
-                            <span className="inline-flex items-center justify-center size-12 rounded-full bg-purple-500/20 text-purple-400 backdrop-blur-sm border border-purple-500/30">
-                                <Brain className="size-5" />
-                            </span>
-                            <span className="inline-flex items-center justify-center size-12 rounded-full bg-orange-500/20 text-orange-400 backdrop-blur-sm border border-orange-500/30">
-                                <Palette className="size-5" />
-                            </span>
+                        {/* Chiron Logo */}
+                        <div className="mb-6">
+                            <Logo size={48} variant="full" />
                         </div>
 
-                        <h1 className="text-4xl md:text-5xl font-black text-white leading-[1.1] mb-6 tracking-tight">
-                            Welcome back to<br />STEAM Spark
+                        <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-[1.1] mb-4 tracking-tight">
+                            Welcome to<br />Chiron
                         </h1>
                         <p className="text-lg text-gray-300 font-light leading-relaxed">
-                            Continue inspiring curiosity and fueling the future of young learners.
+                            Personal tutoring & client management powered by Theia.
                         </p>
-
-                        {/* Stats */}
-                        <div className="mt-10 flex gap-8">
-                            <div>
-                                <p className="text-3xl font-black text-white">10K+</p>
-                                <p className="text-sm text-gray-400">Active Families</p>
-                            </div>
-                            <div>
-                                <p className="text-3xl font-black text-white">500+</p>
-                                <p className="text-sm text-gray-400">Expert Tutors</p>
-                            </div>
-                            <div>
-                                <p className="text-3xl font-black text-white">50K+</p>
-                                <p className="text-sm text-gray-400">Sessions Completed</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -241,10 +217,10 @@ export default function LoginPage() {
                         {/* Mobile Hero */}
                         <div className="lg:hidden text-center mb-8">
                             <div className="flex justify-center mb-4">
-                                <Logo size={64} />
+                                <Logo size={48} variant="full" />
                             </div>
                             <h1 className="text-2xl font-bold mb-2">Welcome back</h1>
-                            <p className="text-muted-foreground">Sign in to continue to STEAM Spark</p>
+                            <p className="text-muted-foreground">Sign in to continue to Chiron</p>
                         </div>
 
                         {/* Desktop Heading */}

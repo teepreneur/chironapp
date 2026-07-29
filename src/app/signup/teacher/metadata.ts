@@ -1,10 +1,11 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "Teacher Sign Up",
-    description: "Join STEAM Spark as an educator. Share your STEAM expertise, set your own schedule, and earn while inspiring the next generation of innovators.",
+    title: "Educator Registration",
+    description: "Join Chiron by Theia as an educator. Build your teaching business, manage your clients, set your rates, and get direct Mobile Money payouts.",
     openGraph: {
-        title: "Become a STEAM Spark Educator",
-        description: "Turn your passion for STEAM into a rewarding teaching career. Join our community of expert tutors.",
+        title: "Become a Chiron Educator",
+        description: "Empower your teaching business. Join our platform for professional educators.",
     },
 }
+

@@ -290,8 +290,8 @@ export default async function TeacherDashboard() {
                         </div>
                         <div className="mt-4 md:mt-0 flex flex-wrap gap-3">
                             <ShareButton
-                                title={`${profile?.full_name || 'Educator'} — STEAM Spark Educator`}
-                                text={`Check out my official teaching profile on STEAM Spark!` + (profile?.subjects ? ` Specializing in ${profile.subjects.join(', ')}.` : '')}
+                                title={`${profile?.full_name || 'Educator'} — Chiron Educator`}
+                                text={`Check out my official teaching profile on Chiron!` + (profile?.subjects ? ` Specializing in ${profile.subjects.join(', ')}.` : '')}
                                 url={`/tutor/${user.id}`}
                                 variant="outline"
                                 size="lg"

@@ -83,7 +83,7 @@ export default function TeacherEarlyAccessClient() {
                     </div>
                     <h2 className="text-2xl font-bold text-slate-800 mb-2">You're on the list!</h2>
                     <p className="text-slate-600 mb-6">
-                        Thanks for joining the STEAM Spark revolution. We'll be in touch soon with your early access invite.
+                        Thanks for joining the Chiron by Theia early access initiative. We'll be in touch soon with your exclusive invite.
                     </p>
                     <p className="text-sm text-slate-400">
                         Redirecting to form in {countdown}s...
@@ -100,7 +100,7 @@ export default function TeacherEarlyAccessClient() {
                                 reason: ''
                             })
                         }}
-                        className="text-blue-600 font-medium hover:underline mt-2 text-sm"
+                        className="text-emerald-700 font-medium hover:underline mt-2 text-sm"
                     >
                         Return immediately
                     </button>
@@ -125,20 +125,20 @@ export default function TeacherEarlyAccessClient() {
                     <div className="space-y-12">
                         <div className="space-y-6">
                             <h1 className="text-4xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1]">
-                                <span className="text-blue-600">Own</span> Your <br />
-                                STEAM Story.
+                                <span className="text-emerald-700">Own</span> Your <br />
+                                Teaching Business.
                             </h1>
                             <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
-                                Join Ghana's first platform built BY educators, FOR educators.
-                                Create your own programs, set your rates, and get paid on time—every time.
+                                Join Ghana's premiere tutoring engine built BY educators, FOR educators.
+                                Create your own programs, set your rates, and get direct Mobile Money payouts—every time.
                             </p>
                             <div className="flex items-center gap-4 text-sm font-medium text-slate-500">
                                 <span className="flex items-center gap-2">
                                     <Rocket className="w-4 h-4 text-slate-400" />
-                                    Limited spots available
+                                    Closed-Beta Invite Access
                                 </span>
                                 <span className="w-1 h-1 bg-slate-300 rounded-full"></span>
-                                <span>Launch: April 2026</span>
+                                <span>Powered by Theia</span>
                             </div>
                         </div>
 
@@ -243,20 +243,22 @@ export default function TeacherEarlyAccessClient() {
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-slate-700">Primary Subject Area</label>
                                 <select
-                                    name="subject"
-                                    required
-                                    className="w-full h-11 px-4 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all outline-none bg-white text-slate-900"
-                                    value={formData.subject}
-                                    onChange={handleChange}
-                                >
-                                    <option value="" disabled>Select a subject...</option>
-                                    <option value="Robotics">Robotics / Electronics</option>
-                                    <option value="Coding">Coding / Programming</option>
-                                    <option value="Science">Science / Experiments</option>
-                                    <option value="Math">Mathematics</option>
-                                    <option value="Art">Creative Arts / Design</option>
-                                    <option value="Other">Other</option>
-                                </select>
+                                     name="subject"
+                                     required
+                                     className="w-full h-11 px-4 rounded-lg border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all outline-none bg-white text-slate-900"
+                                     value={formData.subject}
+                                     onChange={handleChange}
+                                 >
+                                     <option value="" disabled>Select a subject category...</option>
+                                     <option value="Mathematics">Mathematics & Statistics</option>
+                                     <option value="Sciences">Sciences (Physics, Chem, Bio)</option>
+                                     <option value="Languages">Languages & Literature (English, French, Local)</option>
+                                     <option value="Humanities">Humanities & Social Sciences</option>
+                                     <option value="Business">Business & Accounting</option>
+                                     <option value="Coding">Coding, AI & Tech</option>
+                                     <option value="Arts">Creative Arts & Music</option>
+                                     <option value="Other">Other Disciplines</option>
+                                 </select>
                             </div>
 
                             <div className="space-y-2">
@@ -264,7 +266,7 @@ export default function TeacherEarlyAccessClient() {
                                 <select
                                     name="experience"
                                     required
-                                    className="w-full h-11 px-4 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all outline-none bg-white text-slate-900"
+                                    className="w-full h-11 px-4 rounded-lg border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all outline-none bg-white text-slate-900"
                                     value={formData.experience}
                                     onChange={handleChange}
                                 >
@@ -279,7 +281,7 @@ export default function TeacherEarlyAccessClient() {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-blue-600/20 flex items-center justify-center gap-2 mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                                className="w-full h-12 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-emerald-700/20 flex items-center justify-center gap-2 mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
                             >
                                 {isLoading ? (
                                     <>
@@ -294,7 +296,7 @@ export default function TeacherEarlyAccessClient() {
                             </button>
 
                             <p className="text-xs text-center text-slate-400 mt-4">
-                                By joining, you agree to receive updates about STEAM Spark.
+                                By joining, you agree to receive updates about Chiron by Theia.
                             </p>
                         </form>
                     </div>

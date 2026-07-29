@@ -74,13 +74,13 @@ export default function ParentInterestForm() {
 
     if (isSuccess) {
         return (
-            <div className="bg-white p-8 rounded-2xl shadow-xl border border-blue-100 text-center h-full flex flex-col items-center justify-center min-h-[400px]">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 animate-in zoom-in duration-300">
-                    <CheckCircle className="w-8 h-8 text-green-600" />
+            <div className="bg-white p-8 rounded-2xl shadow-xl border border-emerald-100 text-center h-full flex flex-col items-center justify-center min-h-[400px]">
+                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-6 animate-in zoom-in duration-300">
+                    <CheckCircle className="w-8 h-8 text-emerald-600" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-800 mb-4">You're on the list!</h3>
                 <p className="text-slate-600 mb-8 max-w-sm mx-auto">
-                    Thank you for joining the STEAM Spark family. We'll be in touch shortly to help you get started.
+                    Thank you for joining the Chiron by Theia family. We'll be in touch shortly to help you get started.
                 </p>
                 <button
                     onClick={() => {
@@ -95,9 +95,9 @@ export default function ParentInterestForm() {
                         })
                         setOtherInterest('')
                     }}
-                    className="text-blue-500 font-medium hover:text-blue-600 transition"
+                    className="text-emerald-700 font-medium hover:text-emerald-800 transition"
                 >
-                    Register another child
+                    Register another learner
                 </button>
             </div>
         )
@@ -228,7 +228,7 @@ export default function ParentInterestForm() {
                 <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full h-12 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-blue-500/20 flex items-center justify-center gap-2 mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full h-12 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-emerald-700/20 flex items-center justify-center gap-2 mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                     {isLoading ? (
                         <>

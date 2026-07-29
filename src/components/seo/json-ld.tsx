@@ -2,10 +2,10 @@ export function OrganizationJsonLd() {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "EducationalOrganization",
-        name: "STEAM Spark",
-        url: "https://steamsparkgh.com",
-        logo: "https://steamsparkgh.com/logo-spark-v2.png",
-        description: "STEAM Spark connects curious minds with expert mentors. Personalized learning paths in Science, Technology, Engineering, Arts, and Math for kids and teens ages 5-18.",
+        name: "Chiron (by Theia)",
+        url: "https://chironlearning.com",
+        logo: "https://chironlearning.com/brand/chiron-icon.svg",
+        description: "Chiron provides professional teachers and client pairs with a streamlined tutoring, scheduling, and mobile money payment platform.",
         address: {
             "@type": "PostalAddress",
             addressLocality: "Accra",
@@ -15,10 +15,8 @@ export function OrganizationJsonLd() {
             "@type": "Country",
             name: "Ghana",
         },
-        sameAs: [
-            // Add social media URLs when available
-        ],
-        serviceType: "Online Tutoring",
+        sameAs: [],
+        serviceType: "Personal Tutoring & Client Management",
         audience: {
             "@type": "EducationalAudience",
             educationalRole: "student",
@@ -37,14 +35,14 @@ export function WebsiteJsonLd() {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        name: "STEAM Spark",
-        url: "https://steamsparkgh.com",
-        description: "Personalized STEAM education for kids and teens in Ghana",
+        name: "Chiron",
+        url: "https://chironlearning.com",
+        description: "Personal Tutoring & Client Management platform by Theia",
         potentialAction: {
             "@type": "SearchAction",
             target: {
                 "@type": "EntryPoint",
-                urlTemplate: "https://steamsparkgh.com/search?q={search_term_string}",
+                urlTemplate: "https://chironlearning.com/search?q={search_term_string}",
             },
             "query-input": "required name=search_term_string",
         },

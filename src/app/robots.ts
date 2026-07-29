@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: ["/parent/", "/teacher/", "/api/", "/auth/"],
             },
         ],
-        sitemap: "https://steamsparkgh.com/sitemap.xml",
+        sitemap: "https://chironlearning.com/sitemap.xml",
     }
 }

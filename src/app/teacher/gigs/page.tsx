@@ -26,7 +26,7 @@ export default async function MyGigsPage() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-border pb-6">
                 <div className="flex flex-col gap-2">
                     <h1 className="text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] text-foreground">My Gigs</h1>
-                    <p className="text-muted-foreground text-base font-normal">Manage, promote, and track your STEAM teaching portfolio.</p>
+                    <p className="text-muted-foreground text-base font-normal">Manage, promote, and track your teaching portfolio.</p>
                 </div>
                 <Link href="/teacher/gigs/new">
                     <Button className="font-bold gap-2 shadow-lg" size="lg">

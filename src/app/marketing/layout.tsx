@@ -3,36 +3,36 @@ import { Metadata } from "next"
 import { OrganizationJsonLd, WebsiteJsonLd } from "@/components/seo/json-ld"
 
 export const metadata: Metadata = {
-    title: "STEAM Spark | Personalized STEAM Education for Kids and Teens in Ghana",
-    description: "Connect your child or teen with expert tutors in Science, Technology, Engineering, Arts, and Math. Personalized learning paths, gamified lessons, and real-time progress tracking for ages 5-18.",
-    keywords: ["STEAM education", "tutoring Ghana", "online tutoring", "kids and teens education", "science tutoring", "coding for kids and teens", "math tutoring", "personalized learning"],
-    authors: [{ name: "STEAM Spark" }],
-    creator: "STEAM Spark",
-    metadataBase: new URL("https://steamsparkgh.com"),
+    title: "Chiron | Personal Tutoring & Client Management by Theia",
+    description: "Chiron provides professional educators and client pairs with a streamlined tutoring, scheduling, session tracking, and mobile money payment platform.",
+    keywords: ["Chiron", "tutoring Ghana", "client management", "education platform", "mobile money payments", "private tutoring"],
+    authors: [{ name: "Theia" }],
+    creator: "Theia",
+    metadataBase: new URL("https://chironlearning.com"),
     alternates: {
         canonical: "/",
     },
     openGraph: {
         type: "website",
         locale: "en_GH",
-        url: "https://steamsparkgh.com",
-        siteName: "STEAM Spark",
-        title: "STEAM Spark | Personalized STEAM Education for Kids and Teens in Ghana",
-        description: "Connect your child or teen with expert tutors in Science, Technology, Engineering, Arts, and Math. Personalized learning paths and gamified lessons.",
+        url: "https://chironlearning.com",
+        siteName: "Chiron",
+        title: "Chiron | Personal Tutoring & Client Management by Theia",
+        description: "Streamlined tutoring, closed-beta client invites, scheduling, and direct mobile money payments.",
         images: [
             {
-                url: "/og-image-v2.png?v=2",
-                width: 1200,
-                height: 630,
-                alt: "STEAM Spark - Igniting curiosities, one lesson at a time",
+                url: "/brand/chiron-lockup.svg",
+                width: 580,
+                height: 200,
+                alt: "Chiron by Theia",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "STEAM Spark | Personalized STEAM Education for Kids and Teens",
-        description: "Connect your child or teen with expert STEAM tutors. Personalized learning, gamified lessons, real-time progress tracking.",
-        images: ["/og-image-v2.png?v=2"],
+        title: "Chiron | Personal Tutoring & Client Management",
+        description: "Streamlined tutoring, closed-beta client invites, scheduling, and direct mobile money payments.",
+        images: ["/brand/chiron-lockup.svg"],
     },
     robots: {
         index: true,

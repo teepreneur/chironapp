@@ -76,13 +76,13 @@ function generateEmailReceipt({
             </ul>
 
             <div style="text-align: center; margin-top: 32px; margin-bottom: 20px;">
-                <a href="https://app.steamsparkgh.com/parent/dashboard" style="background: #7c3aed; color: white; padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block;">
+                <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://app.chironlearning.com'}/parent/dashboard" style="background: #0b6e4f; color: white; padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block;">
                     Go to Dashboard
                 </a>
             </div>
             
             <p style="text-align: center; color: #94a3b8; font-size: 12px; margin-top: 24px;">
-                STEAM Spark - Igniting Young Minds<br/>
+                Chiron — Personal Tutoring & Client Management by Theia<br/>
                 Accra, Ghana
             </p>
         </div>
@@ -244,23 +244,23 @@ export async function GET(request: Request) {
                 if (teacherProfile?.email && process.env.RESEND_API_KEY) {
                     const resend = new Resend(process.env.RESEND_API_KEY)
                     resend.emails.send({
-                        from: 'STEAM Spark <notifications@steamsparkgh.com>',
+                        from: 'Chiron <notifications@chironlearning.com>',
                         to: teacherProfile.email,
-                        subject: `New Student: ${studentName}`,
+                        subject: `New Client: ${studentName}`,
                         html: `
                             <p>Hi ${teacherProfile.full_name},</p>
                             <p><strong>${parentName}</strong> has confirmed payment for <strong>${studentName}</strong>.</p>
                             <p>Class: ${gigTitle}</p>
                             <p>Sessions: ${totalSessions}</p>
                             <br/>
-                            <a href="https://app.steamsparkgh.com/teacher/students">View Student Details</a>
+                            <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://app.chironlearning.com'}/teacher/clients">View Client Details</a>
                         `
                     }).catch(e => console.error('Teacher email failed:', e))
                 }
 
                 // WhatsApp Notification
                 if (teacherProfile?.whatsapp_enabled && teacherProfile?.whatsapp_number) {
-                    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.steamsparkgh.com'
+                    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.chironlearning.com'
                     fetch(`${appUrl}/api/notifications/whatsapp`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -305,7 +305,7 @@ export async function GET(request: Request) {
                 if (process.env.RESEND_API_KEY) {
                     const resend = new Resend(process.env.RESEND_API_KEY)
                     resend.emails.send({
-                        from: 'STEAM Spark <notifications@steamsparkgh.com>',
+                        from: 'Chiron <notifications@chironlearning.com>',
                         to: parentEmail,
                         subject: `Payment Receipt: ${gigTitle}`,
                         html: emailHtml
@@ -314,11 +314,8 @@ export async function GET(request: Request) {
             }
 
             // WhatsApp Notification (if parent has number)
-            // Note: Currently we only have explicit whatsapp_number for teachers. 
-            // For parents, we might check if their phone_number acts as WhatsApp or if we added a whatsapp_number field to their profile.
-            // Assuming we added it based on previous tasks:
             if (bookingDetails.parent?.whatsapp_enabled && bookingDetails.parent?.whatsapp_number) {
-                const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.steamsparkgh.com'
+                const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.chironlearning.com'
                 fetch(`${appUrl}/api/notifications/whatsapp`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

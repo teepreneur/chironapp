@@ -46,7 +46,7 @@ async function initiateTransfer(details: {
             source: details.source || 'balance',
             amount: details.amount,
             recipient: details.recipient,
-            reason: details.reason || 'Teacher payout from STEAM Spark',
+            reason: details.reason || 'Teacher payout from Chiron',
             reference: details.reference
         })
     })

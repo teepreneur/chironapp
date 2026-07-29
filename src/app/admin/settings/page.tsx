@@ -33,11 +33,11 @@ export default function SettingsPage() {
                 <div className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium mb-1">Platform Name</label>
-                        <Input defaultValue="STEAM Spark" />
+                        <Input defaultValue="Chiron (by Theia)" />
                     </div>
                     <div>
                         <label className="block text-sm font-medium mb-1">Support Email</label>
-                        <Input defaultValue="support@starterstech.com" />
+                        <Input defaultValue="support@chironlearning.com" />
                     </div>
                     <div>
                         <label className="block text-sm font-medium mb-1">Default Currency</label>
