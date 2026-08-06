@@ -166,11 +166,23 @@ export async function middleware(request: NextRequest) {
         data: { user },
     } = await supabase.auth.getUser()
 
-    // If user is not signed in and tries to access protected routes, redirect to /login
-    if (!user && (pathname.startsWith('/teacher') || pathname.startsWith('/parent'))) {
-        const url = request.nextUrl.clone()
-        url.pathname = '/login'
-        return NextResponse.redirect(url)
+    // Protect /admin routes when on standard domains (like vercel.app or localhost)
+    if (pathname.startsWith('/admin') && pathname !== '/admin/login' && pathname !== '/admin/unauthorized') {
+        if (!user) {
+            const url = request.nextUrl.clone()
+            url.pathname = '/admin/login'
+            return NextResponse.redirect(url)
+        }
+        const { data: profile } = await supabase
+            .from('profiles')
+            .select('role')
+            .eq('id', user.id)
+            .single()
+        if (profile?.role !== 'admin') {
+            const url = request.nextUrl.clone()
+            url.pathname = '/admin/unauthorized'
+            return NextResponse.redirect(url)
+        }
     }
 
     // Role-based access control
@@ -184,12 +196,18 @@ export async function middleware(request: NextRequest) {
 
         const userRole = profile?.role
 
-        // Admins on app subdomain - redirect to admin subdomain
-        if (userRole === 'admin' && !pathname.startsWith('/login')) {
-            const url = new URL(request.url)
-            url.host = ADMIN_SUBDOMAIN
-            url.pathname = '/dashboard'
-            return NextResponse.redirect(url)
+        // Admins on app subdomain or vercel.app - redirect to admin dashboard
+        if (userRole === 'admin' && !pathname.startsWith('/admin') && !pathname.startsWith('/login')) {
+            if (hostname.includes('chironlearning.com')) {
+                const url = new URL(request.url)
+                url.host = ADMIN_SUBDOMAIN
+                url.pathname = '/dashboard'
+                return NextResponse.redirect(url)
+            } else {
+                const url = request.nextUrl.clone()
+                url.pathname = '/admin/dashboard'
+                return NextResponse.redirect(url)
+            }
         }
 
         // Teachers cannot access parent routes
@@ -209,7 +227,11 @@ export async function middleware(request: NextRequest) {
         // Redirect logged-in users from login/signup to their dashboard
         if (pathname === '/login' || pathname === '/signup') {
             const url = request.nextUrl.clone()
-            url.pathname = userRole === 'teacher' ? '/teacher/dashboard' : '/parent/dashboard'
+            url.pathname = userRole === 'admin'
+                ? '/admin/dashboard'
+                : userRole === 'teacher'
+                    ? '/teacher/dashboard'
+                    : '/parent/dashboard'
             return NextResponse.redirect(url)
         }
     }
