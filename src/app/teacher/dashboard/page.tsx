@@ -273,39 +273,7 @@ export default async function TeacherDashboard() {
                 </div>
             )}
 
-            {/* Header Banner */}
-            <div className="w-full">
-                <div
-                    className="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-2xl min-h-[180px] md:min-h-[220px] shadow-sm relative group"
-                    style={{
-                        backgroundImage: 'linear-gradient(0deg, rgba(37, 140, 244, 0.9) 0%, rgba(37, 140, 244, 0.4) 100%), url("https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2604&auto=format&fit=crop")'
-                    }}
-                >
-                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
-                    <div className="flex flex-col md:flex-row md:items-end justify-between p-6 md:p-8 relative z-10">
-                        <div className="flex flex-col gap-2">
-                            <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs font-bold w-fit uppercase tracking-wider">Teacher Dashboard</span>
-                            <h1 className="text-white text-2xl md:text-4xl font-bold leading-tight">Welcome back!</h1>
-                            <p className="text-white/90 text-sm md:text-base font-medium">You have {upcomingSessions.length} upcoming sessions.</p>
-                        </div>
-                        <div className="mt-4 md:mt-0 flex flex-wrap gap-3">
-                            <ShareButton
-                                title={`${profile?.full_name || 'Educator'} — Chiron Educator`}
-                                text={`Check out my official teaching profile on Chiron!` + (profile?.subjects ? ` Specializing in ${profile.subjects.join(', ')}.` : '')}
-                                url={`/tutor/${user.id}`}
-                                variant="outline"
-                                size="lg"
-                                className="bg-white/20 text-white hover:bg-white/30 border-white/40 font-bold backdrop-blur-sm shadow-lg"
-                            />
-                            <Button className="bg-white text-primary hover:bg-gray-100 font-bold shadow-lg" size="lg" asChild>
-                                <Link href="/teacher/gigs/new">
-                                    <Plus className="mr-2 size-5" /> Create Course
-                                </Link>
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
             {/* Stats */}
             <StatsGrid
