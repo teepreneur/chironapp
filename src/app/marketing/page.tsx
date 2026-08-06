@@ -14,33 +14,24 @@ import { Button } from "@/components/ui/button"
 
 const APP_URL = ""
 
-// 25 Founding Educators for the Hero Grid
-const teachersGrid = [
-  { name: "Ama K.", subject: "Mathematics & Physics", rating: "5.0", location: "Accra", earnings: "₵4,800/mo", avatar: "/teachers/teacher_ama.png" },
-  { name: "Kofi M.", subject: "Coding & Robotics", rating: "4.9", location: "Kumasi", earnings: "₵5,200/mo", initial: "KM", bg: "bg-blue-600" },
-  { name: "Esi B.", subject: "French & Literature", rating: "5.0", location: "Takoradi", earnings: "₵3,900/mo", initial: "EB", bg: "bg-emerald-600" },
-  { name: "David O.", subject: "Economics & Accounting", rating: "5.0", location: "Tema", earnings: "₵4,500/mo", initial: "DO", bg: "bg-purple-600" },
-  { name: "Abena S.", subject: "Primary Literacy & Numeracy", rating: "4.9", location: "Accra", earnings: "₵3,600/mo", initial: "AS", bg: "bg-amber-600" },
-  { name: "Kwame A.", subject: "Chemistry & Biology", rating: "5.0", location: "Cape Coast", earnings: "₵4,100/mo", initial: "KA", bg: "bg-teal-600" },
-  { name: "Yaa P.", subject: "Music & Performing Arts", rating: "4.9", location: "Sunyani", earnings: "₵3,200/mo", initial: "YP", bg: "bg-rose-600" },
-  { name: "Yaw T.", subject: "Further Mathematics", rating: "5.0", location: "Kumasi", earnings: "₵5,000/mo", initial: "YT", bg: "bg-indigo-600" },
-  { name: "Akosua G.", subject: "English & Public Speaking", rating: "4.9", location: "Accra", earnings: "₵3,800/mo", initial: "AG", bg: "bg-pink-600" },
-  { name: "Kojo N.", subject: "Computer Science & AI", rating: "5.0", location: "Tema", earnings: "₵5,800/mo", initial: "KN", bg: "bg-cyan-600" },
-  { name: "Effah R.", subject: "History & Social Studies", rating: "4.8", location: "Koforidua", earnings: "₵3,400/mo", initial: "ER", bg: "bg-amber-700" },
-  { name: "Adwoa H.", subject: "Art & Graphic Design", rating: "4.9", location: "Accra", earnings: "₵3,700/mo", initial: "AH", bg: "bg-violet-600" },
-  { name: "Fiifi L.", subject: "Business & Finance", rating: "5.0", location: "Kumasi", earnings: "₵4,600/mo", initial: "FL", bg: "bg-emerald-700" },
-  { name: "Nana K.", subject: "Geography & Environmental Science", rating: "4.9", location: "Ho", earnings: "₵3,300/mo", initial: "NK", bg: "bg-lime-700" },
-  { name: "Serwaa M.", subject: "German & European Languages", rating: "5.0", location: "Accra", earnings: "₵4,200/mo", initial: "SM", bg: "bg-sky-600" },
-  { name: "Kwadwo E.", subject: "Technical Drawing & CAD", rating: "4.9", location: "Tema", earnings: "₵4,000/mo", initial: "KE", bg: "bg-slate-700" },
-  { name: "Afia D.", subject: "Special Needs Education", rating: "5.0", location: "Accra", earnings: "₵4,400/mo", initial: "AD", bg: "bg-fuchsia-600" },
-  { name: "Paapa J.", subject: "Phonics & Early Reading", rating: "4.9", location: "Cape Coast", earnings: "₵3,500/mo", initial: "PJ", bg: "bg-orange-600" },
-  { name: "Baaba K.", subject: "SAT & IGCSE Prep", rating: "5.0", location: "Accra", earnings: "₵6,100/mo", initial: "BK", bg: "bg-emerald-800" },
-  { name: "Ato W.", subject: "Financial Literacy for Youth", rating: "4.9", location: "Kumasi", earnings: "₵3,900/mo", initial: "AW", bg: "bg-blue-700" },
-  { name: "Araba C.", subject: "Spanish Language", rating: "4.8", location: "Takoradi", earnings: "₵3,400/mo", initial: "AC", bg: "bg-red-600" },
-  { name: "Kweku F.", subject: "Data Science & Python", rating: "5.0", location: "Accra", earnings: "₵5,500/mo", initial: "KF", bg: "bg-teal-700" },
-  { name: "Maame Y.", subject: "Creative Writing & Drama", rating: "4.9", location: "Tamale", earnings: "₵3,100/mo", initial: "MY", bg: "bg-purple-700" },
-  { name: "Osei B.", subject: "Integrated Science", rating: "5.0", location: "Kumasi", earnings: "₵4,300/mo", initial: "OB", bg: "bg-emerald-600" },
-  { name: "Dede A.", subject: "Montessori Early Years", rating: "4.9", location: "Accra", earnings: "₵3,800/mo", initial: "DA", bg: "bg-indigo-700" },
+// Tutor image thumbnails for the Hero Grid
+const tutorThumbnails = [
+  { image: "/teachers/teacher_ama.png" },
+  { image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=300&auto=format&fit=crop&q=80" },
+  { image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&auto=format&fit=crop&q=80" },
 ]
 
 export default function EducatorLandingPage() {
@@ -85,99 +76,83 @@ export default function EducatorLandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-32 bg-gradient-to-b from-emerald-500/5 via-background to-background">
+      <section className="relative overflow-hidden pt-12 pb-16 lg:pt-16 lg:pb-24 bg-gradient-to-b from-emerald-500/5 via-background to-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-4 py-1.5 text-xs font-bold text-emerald-800 dark:text-emerald-300 mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse" />
-              <span>Built Exclusively for Independent Educators</span>
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            {/* Left Column: Hero Text */}
+            <div className="lg:col-span-6 text-left">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight text-foreground mb-6">
+                Build Your Tutoring Business.<br />
+                <span className="text-emerald-700 dark:text-emerald-400">Earn on Your Own Terms.</span>
+              </h1>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight text-foreground mb-6">
-              Build Your Tutoring Business.<br />
-              <span className="text-emerald-700 dark:text-emerald-400">Earn on Your Own Terms.</span>
-            </h1>
-
-            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed font-normal mb-8 max-w-2xl mx-auto">
-              Chiron empowers teachers with everything needed to build a verified profile, advertise services, secure private clients, manage classes, and receive instant Mobile Money payouts.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto">
-              <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-base font-bold bg-emerald-700 hover:bg-emerald-800 text-white shadow-xl shadow-emerald-700/25 rounded-2xl transition-all hover:scale-105" asChild>
-                <Link href="/signup/teacher">
-                  Join as an Educator <ArrowRight className="ml-2 size-5" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="w-full sm:w-auto h-14 px-8 text-base font-bold rounded-2xl border-2" asChild>
-                <a href="#how-it-works">See How It Works</a>
-              </Button>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm font-semibold text-muted-foreground mt-8">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="size-4 text-emerald-600" />
-                <span>0% Agency Commission</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="size-4 text-emerald-600" />
-                <span>Instant MoMo Payouts</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="size-4 text-emerald-600" />
-                <span>Direct Client Control</span>
-              </div>
-            </div>
-          </div>
-
-          {/* 25 Educator Showcase Grid */}
-          <div className="mt-8 pt-8 border-t border-border/60">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-foreground">
-                Supported over <span className="text-emerald-700 dark:text-emerald-400">25+ Founding Educators</span> across Ghana
-              </h2>
-              <p className="text-sm text-muted-foreground mt-1">
-                Top teachers building independent private tutoring practices with Chiron
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed font-normal mb-8 max-w-xl">
+                Chiron empowers teachers with everything needed to build a verified profile, advertise services, secure private clients, manage classes, and receive instant Mobile Money payouts.
               </p>
+
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-8">
+                <Button size="lg" className="h-14 px-8 text-base font-bold bg-emerald-700 hover:bg-emerald-800 text-white shadow-xl shadow-emerald-700/25 rounded-2xl transition-all hover:scale-105" asChild>
+                  <Link href="/signup/teacher">
+                    Join as an Educator <ArrowRight className="ml-2 size-5" />
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" className="h-14 px-8 text-base font-bold rounded-2xl border-2" asChild>
+                  <a href="#how-it-works">See How It Works</a>
+                </Button>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-6 text-sm font-semibold text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="size-4 text-emerald-600 shrink-0" />
+                  <span>0% Agency Commission</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="size-4 text-emerald-600 shrink-0" />
+                  <span>Instant MoMo Payouts</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="size-4 text-emerald-600 shrink-0" />
+                  <span>Direct Client Control</span>
+                </div>
+              </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-h-[500px] overflow-y-auto p-2 rounded-3xl border border-border bg-card/50 backdrop-blur-sm scrollbar-thin">
-              {teachersGrid.map((teacher, index) => (
-                <div 
-                  key={index}
-                  className="p-3.5 rounded-2xl bg-card border border-border/80 hover:border-emerald-700/40 hover:shadow-md transition-all duration-200 flex flex-col justify-between"
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    {teacher.avatar ? (
-                      <div className="relative size-10 rounded-xl overflow-hidden shrink-0 border border-emerald-600/30">
-                        <Image src={teacher.avatar} alt={teacher.name} fill className="object-cover" />
-                      </div>
-                    ) : (
-                      <div className={`size-10 rounded-xl ${teacher.bg} text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-sm`}>
-                        {teacher.initial}
-                      </div>
-                    )}
-                    <div className="overflow-hidden">
-                      <div className="flex items-center gap-1">
-                        <h3 className="font-bold text-sm truncate">{teacher.name}</h3>
-                        <span className="size-2 rounded-full bg-emerald-500 shrink-0" title="Active Teacher" />
-                      </div>
-                      <p className="text-[11px] text-muted-foreground truncate">{teacher.location}</p>
+            {/* Right Column: Tutors Grid */}
+            <div className="lg:col-span-6">
+              <div className="relative max-w-md mx-auto lg:max-w-none">
+                {/* Glowing background aura */}
+                <div className="absolute -inset-4 bg-emerald-500/10 rounded-3xl blur-2xl -z-10" />
+                
+                <div className="rounded-3xl border border-border bg-card/80 p-5 sm:p-6 shadow-2xl backdrop-blur-md">
+                  <div className="flex items-center justify-between mb-5 pb-3 border-b border-border/60">
+                    <div className="flex items-center gap-2">
+                      <span className="size-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                        Experienced Educator Network
+                      </span>
                     </div>
+                    <span className="text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                      25+ Verified Tutors
+                    </span>
                   </div>
 
-                  <p className="text-[11px] font-semibold text-emerald-800 dark:text-emerald-300 truncate bg-emerald-500/10 px-2 py-0.5 rounded-md mb-2">
-                    {teacher.subject}
-                  </p>
-
-                  <div className="flex items-center justify-between text-xs pt-1 border-t border-border/40">
-                    <div className="flex items-center gap-1 text-amber-500 font-bold text-[11px]">
-                      <Star className="size-3 fill-amber-500 text-amber-500" />
-                      <span>{teacher.rating}</span>
-                    </div>
-                    <span className="font-bold text-emerald-700 dark:text-emerald-400 text-[11px]">{teacher.earnings}</span>
+                  <div className="grid grid-cols-4 gap-3 sm:gap-3.5">
+                    {tutorThumbnails.map((tutor, idx) => (
+                      <div 
+                        key={idx} 
+                        className="group relative aspect-square rounded-2xl overflow-hidden border border-border/80 bg-muted hover:border-emerald-500/60 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                      >
+                        <img 
+                          src={tutor.image} 
+                          alt="Tutor Thumbnail" 
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                        <span className="absolute bottom-1.5 right-1.5 size-2 sm:size-2.5 rounded-full bg-emerald-500 ring-2 ring-background shadow-sm" />
+                      </div>
+                    ))}
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
@@ -188,7 +163,6 @@ export default function EducatorLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
-              Traditional Agencies Steal Your Hard Work.<br />
               <span className="text-emerald-700 dark:text-emerald-400">Chiron Gives You Total Control.</span>
             </h2>
             <p className="text-lg text-muted-foreground font-normal">

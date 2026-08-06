@@ -132,17 +132,20 @@ function TeachersContent() {
         )
     }
 
+    const totalVerified = teachers.filter(t => t.verified_at).length
+    const totalPending = teachers.filter(t => !t.verified_at && (t.cv_url || t.id_url)).length
+
     return (
         <div className="space-y-6">
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold">Teacher Management</h1>
+                    <h1 className="text-2xl font-bold">Teacher Management Hub</h1>
                     <p className="text-muted-foreground">
-                        {filteredTeachers.length} teachers • {teachers.filter(t => !t.verified_at).length} pending verification
+                        Manage educator profiles, verify qualifications, review credentials, and monitor performance
                     </p>
                 </div>
-                <Button asChild className="gap-2">
+                <Button asChild className="gap-2 bg-emerald-600 hover:bg-emerald-700 text-white">
                     <Link href={getAdminHref('/admin/users/teachers/new')}>
                         <Plus className="size-4" />
                         Add New Teacher
@@ -150,19 +153,50 @@ function TeachersContent() {
                 </Button>
             </div>
 
+            {/* Quick Metrics Bar */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="p-4 rounded-xl border bg-card flex items-center gap-4 shadow-sm">
+                    <div className="size-12 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                        <GraduationCap className="size-6" />
+                    </div>
+                    <div>
+                        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Total Educators</p>
+                        <p className="text-2xl font-bold">{teachers.length}</p>
+                    </div>
+                </div>
+                <div className="p-4 rounded-xl border bg-card flex items-center gap-4 shadow-sm">
+                    <div className="size-12 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                        <Clock className="size-6" />
+                    </div>
+                    <div>
+                        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Pending Credential Reviews</p>
+                        <p className="text-2xl font-bold">{totalPending}</p>
+                    </div>
+                </div>
+                <div className="p-4 rounded-xl border bg-card flex items-center gap-4 shadow-sm">
+                    <div className="size-12 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                        <CheckCircle className="size-6" />
+                    </div>
+                    <div>
+                        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Verified Educators</p>
+                        <p className="text-2xl font-bold">{totalVerified}</p>
+                    </div>
+                </div>
+            </div>
+
             {/* Filters */}
             <div className="flex flex-col sm:flex-row gap-4">
                 <div className="relative flex-1">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                     <Input
-                        placeholder="Search by name, email, or subject..."
+                        placeholder="Search by educator name, email, or subjects taught..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="pl-10"
                     />
                 </div>
                 <div className="flex gap-2">
-                    {(['all', 'verified', 'unverified', 'pending'] as const).map((f) => (
+                    {(['all', 'verified', 'pending', 'unverified'] as const).map((f) => (
                         <Button
                             key={f}
                             variant={filter === f ? "default" : "outline"}
@@ -170,7 +204,7 @@ function TeachersContent() {
                             onClick={() => setFilter(f)}
                             className="capitalize"
                         >
-                            {f}
+                            {f === 'pending' ? `Pending Review (${totalPending})` : f}
                         </Button>
                     ))}
                 </div>
