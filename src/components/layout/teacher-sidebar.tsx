@@ -68,7 +68,7 @@ const colorMap: Record<string, string> = {
 const sidebarItems: SidebarItem[] = [
     { icon: LayoutDashboard, label: "Home", href: "/teacher/dashboard", comingSoon: false },
     { icon: Users, label: "Clients", href: "/teacher/clients", comingSoon: false },
-    { icon: Calendar, label: "Calendar", href: "/teacher/calendar", comingSoon: true },
+    { icon: Calendar, label: "Calendar", href: "/teacher/calendar", comingSoon: false },
     { icon: Ticket, label: "My Lessons", href: "/teacher/gigs", comingSoon: false },
     { icon: DollarSign, label: "Earnings", href: "/teacher/earnings", comingSoon: false },
     { icon: MessageSquare, label: "Messages", href: "/teacher/messages", comingSoon: true },
