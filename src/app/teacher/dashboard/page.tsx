@@ -4,7 +4,6 @@ import { ShareButton } from "@/components/share-button"
 import { StatsGrid } from "./_components/stats-grid"
 import { QuickActions } from "./_components/quick-actions"
 import { UpcomingSessions } from "./_components/upcoming-sessions"
-import { RecentInquiries } from "./_components/recent-inquiries"
 import { ActivityChart } from "./_components/activity-chart"
 import { createClient } from "@/lib/supabase/server"
 import Link from "next/link"
@@ -285,29 +284,11 @@ export default async function TeacherDashboard() {
                 hasReviews={!!(reviewData && reviewData.length > 0)}
             />
 
-            {/* Main Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Left Column */}
-                <div className="lg:col-span-2 flex flex-col gap-6">
-                    <QuickActions userId={user.id} fullName={profile?.full_name} />
-                    <UpcomingSessions sessions={formattedSessions} />
-                    <ActivityChart sessions={activityRaw} />
-                </div>
-
-                {/* Right Column */}
-                <div className="flex flex-col gap-6">
-                    <RecentInquiries />
-                    {/* Teacher Tip */}
-                    <section>
-                        <div className="bg-gradient-to-br from-indigo-500 to-primary rounded-xl p-5 text-white shadow-md relative overflow-hidden">
-                            <h3 className="font-bold text-lg mb-2 relative z-10">Engage your students!</h3>
-                            <p className="text-sm opacity-90 relative z-10">Try adding a quiz at the end of your session to boost interaction scores.</p>
-                            <Button variant="secondary" className="mt-4 bg-white/20 hover:bg-white/30 border-none text-white font-bold h-8 text-xs">
-                                View Resources
-                            </Button>
-                        </div>
-                    </section>
-                </div>
+            {/* Main Sections */}
+            <div className="flex flex-col gap-6">
+                <QuickActions userId={user.id} fullName={profile?.full_name} />
+                <UpcomingSessions sessions={formattedSessions} />
+                <ActivityChart sessions={activityRaw} />
             </div>
         </div>
     );
