@@ -577,7 +577,7 @@ export default function ParentSettingsPage() {
 
             {/* Sticky Bottom Action Bar */}
             <div className="fixed bottom-0 left-0 w-full bg-background border-t border-border p-4 z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-                <div className="max-w-5xl mx-auto flex justify-end gap-4 px-4">
+                <div className="max-w-5xl mx-auto flex justify-end gap-4 px-4 pr-24 sm:pr-28">
                     <Button variant="outline">Discard Changes</Button>
                     <Button className="font-medium shadow-lg gap-2" onClick={handleSaveProfile} disabled={saving}>
                         {saving ? <Loader2 className="animate-spin size-4" /> : <Save className="size-5" />}

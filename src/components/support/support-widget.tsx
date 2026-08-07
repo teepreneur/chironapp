@@ -277,7 +277,7 @@ export function SupportWidget() {
     }
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
+        <div className="fixed bottom-20 right-6 z-50 flex flex-col items-end gap-4">
             {/* Chat Window */}
             {isOpen && (
                 <Card className="w-[350px] shadow-2xl border-primary/20 animate-in slide-in-from-bottom-5 fade-in duration-300">
