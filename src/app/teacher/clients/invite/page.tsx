@@ -74,9 +74,10 @@ export default function ClientInvitePage() {
         }
     }
 
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://chironapp.vercel.app'
     const shareUrl = inviteCode
-        ? `${window.location.origin}/signup/parent?invite=${inviteCode}`
-        : `${window.location.origin}/signup/parent`
+        ? `${origin}/signup/parent?invite=${inviteCode}`
+        : `${origin}/signup/parent`
 
     const whatsappShareText = encodeURIComponent(
         `Hello ${parentName || 'Client'}! I have set up our private tuition class on Chiron. Please complete your registration here: ${shareUrl}`
