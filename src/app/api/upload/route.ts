@@ -76,8 +76,28 @@ export async function POST(request: Request) {
             .from(bucket)
             .getPublicUrl(data.path)
 
+        const publicUrl = urlData.publicUrl
+
+        // If uploading an avatar or photo, automatically trigger profile avatar_url update & revalidate marketing page
+        const isAvatarUpload = folder === 'avatars' || bucket === 'avatars' || formData.get('isAvatar') === 'true'
+        if (isAvatarUpload && user) {
+            try {
+                const { revalidatePath } = await import('next/cache')
+                await supabase
+                    .from('profiles')
+                    .update({ avatar_url: publicUrl })
+                    .eq('id', user.id)
+
+                revalidatePath('/marketing')
+                revalidatePath('/')
+                console.log(`[Avatar Trigger] Updated avatar_url for teacher ${user.id} and revalidated marketing page.`)
+            } catch (revErr) {
+                console.warn('[Avatar Revalidation Warning]:', revErr)
+            }
+        }
+
         return NextResponse.json({
-            url: urlData.publicUrl,
+            url: publicUrl,
             path: data.path,
             fileName: file.name,
             size: file.size,

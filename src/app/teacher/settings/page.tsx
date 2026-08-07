@@ -142,7 +142,10 @@ export default function SettingsPage() {
             const formData = new FormData()
             formData.append('file', file)
             formData.append('bucket', 'gig-media')
-            formData.append('folder', field === 'avatar' ? 'avatars' : 'verification')
+            formData.append('folder', field === 'avatar' || field === 'photo' ? 'avatars' : 'verification')
+            if (field === 'avatar' || field === 'photo') {
+                formData.append('isAvatar', 'true')
+            }
 
             const response = await fetch('/api/upload', {
                 method: 'POST',
@@ -153,7 +156,7 @@ export default function SettingsPage() {
             if (data.error) {
                 alert(`Upload failed: ${data.error}`)
             } else {
-                if (field === 'avatar') setAvatarUrl(data.url)
+                if (field === 'avatar' || field === 'photo') setAvatarUrl(data.url)
                 if (field === 'cv') setCvUrl(data.url)
                 if (field === 'id') setIdUrl(data.url)
                 if (field === 'photo') setPhotoUrl(data.url)
