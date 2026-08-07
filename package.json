@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync:avatars": "node scripts/sync_teacher_hero_images.js"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",
