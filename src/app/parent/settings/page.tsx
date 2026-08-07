@@ -129,48 +129,21 @@ export default function ParentSettingsPage() {
         if (!profile) return
         setSaving(true)
 
-        let updatePayload: Record<string, any> = {
+        const updatePayload: Record<string, any> = {
             full_name: fullName,
             avatar_url: avatarUrl,
-            class_mode: classMode,
             country: country || null,
-            city: city || null,
-            phone_number: phone || null,
-            whatsapp_number: whatsappSameAsPhone ? phone : whatsappNumber || null,
-            whatsapp_enabled: whatsappEnabled,
-            latitude: latitude,
-            longitude: longitude,
-            address: address,
-            location_type: locationType
+            city: city || null
         }
 
-        let saveError: any = null
-        let attempts = 0
+        const { error } = await supabase
+            .from('profiles')
+            .update(updatePayload)
+            .eq('id', profile.id)
 
-        while (attempts < 15) {
-            attempts++
-            const { error } = await supabase
-                .from('profiles')
-                .update(updatePayload)
-                .eq('id', profile.id)
-
-            if (!error) {
-                saveError = null
-                break
-            }
-
-            const unmappedMatch = error.message.match(/Could not find the '([^']+)' column/)
-            if (unmappedMatch && unmappedMatch[1]) {
-                delete updatePayload[unmappedMatch[1]]
-            } else {
-                saveError = error
-                break
-            }
-        }
-
-        if (saveError) {
-            console.error(saveError)
-            alert(`Failed to save profile: ${saveError.message || 'Unknown error'}`)
+        if (error) {
+            console.error(error)
+            alert(`Failed to save profile: ${error.message || 'Unknown error'}`)
         } else {
             alert("Profile saved successfully!")
         }
