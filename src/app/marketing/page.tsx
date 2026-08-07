@@ -12,10 +12,13 @@ import {
 import { Logo } from "@/components/ui/logo"
 import { Button } from "@/components/ui/button"
 
+import { useEffect } from "react"
+import { createClient } from "@/lib/supabase/client"
+
 const APP_URL = ""
 
-// Tutor image thumbnails for the Hero Grid
-const tutorThumbnails = [
+// Default fallback tutor image thumbnails for the Hero Grid
+const defaultThumbnails = [
   { image: "/teachers/teacher_ama.png" },
   { image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80" },
   { image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&auto=format&fit=crop&q=80" },
@@ -35,8 +38,41 @@ const tutorThumbnails = [
 ]
 
 export default function EducatorLandingPage() {
+  const supabase = createClient()
   const [hoursPerWeek, setHoursPerWeek] = useState(15)
   const [hourlyRate, setHourlyRate] = useState(80)
+  const [tutorThumbnails, setTutorThumbnails] = useState<{ image: string }[]>(defaultThumbnails)
+  const [verifiedCount, setVerifiedCount] = useState<number>(25)
+
+  useEffect(() => {
+    async function loadLiveTeachers() {
+      try {
+        const { data: teachers, count } = await supabase
+          .from('profiles')
+          .select('avatar_url', { count: 'exact' })
+          .eq('role', 'teacher')
+          .not('avatar_url', 'is', null)
+          .limit(16)
+
+        if (count && count > 0) {
+          setVerifiedCount(count)
+        }
+
+        if (teachers && teachers.length > 0) {
+          const liveImages = teachers
+            .filter(t => t.avatar_url)
+            .map(t => ({ image: t.avatar_url! }))
+          
+          // Fill remaining slots with defaults if fewer than 16 live teachers
+          const merged = [...liveImages, ...defaultThumbnails.slice(liveImages.length)].slice(0, 16)
+          setTutorThumbnails(merged)
+        }
+      } catch (err) {
+        console.warn("Could not load live teachers for landing page:", err)
+      }
+    }
+    loadLiveTeachers()
+  }, [])
 
   const estimatedMonthlyEarnings = hoursPerWeek * hourlyRate * 4
 
@@ -132,7 +168,7 @@ export default function EducatorLandingPage() {
                       </span>
                     </div>
                     <span className="text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
-                      25+ Verified Tutors
+                      {verifiedCount}+ Verified Tutors
                     </span>
                   </div>
 

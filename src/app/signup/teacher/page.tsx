@@ -55,7 +55,7 @@ export default function TeacherSignupPage() {
     const [password, setPassword] = useState("")
 
     // Step 2: Credentials & Payouts
-    const [uploadedFiles, setUploadedFiles] = useState<string[]>([])
+    const [uploadedFiles, setUploadedFiles] = useState<{ name: string; file: File }[]>([])
     const [momoNumber, setMomoNumber] = useState("")
     const [momoNetwork, setMomoNetwork] = useState("mtn")
 
@@ -81,8 +81,8 @@ export default function TeacherSignupPage() {
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
-            const names = Array.from(e.target.files).map(f => f.name)
-            setUploadedFiles([...uploadedFiles, ...names])
+            const newFiles = Array.from(e.target.files).map(f => ({ name: f.name, file: f }))
+            setUploadedFiles(prev => [...prev, ...newFiles])
         }
     }
 
@@ -115,11 +115,43 @@ export default function TeacherSignupPage() {
             if (signUpError) throw signUpError
             if (!authData.user) throw new Error("Signup failed")
 
-            // 2. Wait for trigger to create profile
+            // 2. Upload verification documents to Supabase Storage if files were selected
+            let cvUrl: string | null = null
+            let idUrl: string | null = null
+
+            if (uploadedFiles.length > 0) {
+                try {
+                    for (let i = 0; i < uploadedFiles.length; i++) {
+                        const item = uploadedFiles[i]
+                        const fileExt = item.name.split('.').pop()
+                        const filePath = `${authData.user.id}/${Date.now()}_${i}.${fileExt}`
+
+                        const { data: uploadData, error: uploadErr } = await supabase
+                            .storage
+                            .from('verification_docs')
+                            .upload(filePath, item.file, { upsert: true })
+
+                        if (!uploadErr && uploadData) {
+                            const { data: publicUrlData } = supabase
+                                .storage
+                                .from('verification_docs')
+                                .getPublicUrl(filePath)
+
+                            const fileUrl = publicUrlData?.publicUrl || null
+                            if (i === 0) cvUrl = fileUrl
+                            if (i === 1) idUrl = fileUrl
+                        }
+                    }
+                } catch (uploadException) {
+                    console.warn("Storage upload warning (will save file names):", uploadException)
+                }
+            }
+
+            // 3. Wait for trigger to create profile
             await new Promise(resolve => setTimeout(resolve, 1000))
 
-            // 3. Update teacher profile with full details
-            await supabase.from('profiles').update({
+            // 4. Update teacher profile with full details and credential links
+            const profileUpdate: Record<string, any> = {
                 full_name: `${firstName} ${lastName}`,
                 role: 'teacher',
                 bio: bio,
@@ -128,10 +160,14 @@ export default function TeacherSignupPage() {
                 momo_number: momoNumber,
                 momo_network: momoNetwork,
                 verification_status: 'pending'
-            }).eq('id', authData.user.id)
+            }
+
+            if (cvUrl) profileUpdate.cv_url = cvUrl
+            if (idUrl) profileUpdate.id_url = idUrl
+
+            await supabase.from('profiles').update(profileUpdate).eq('id', authData.user.id)
 
             setSubmitted(true)
-            // Scroll to top for confirmation view
             window.scrollTo(0, 0)
 
         } catch (err: any) {
@@ -297,9 +333,9 @@ export default function TeacherSignupPage() {
 
                                     {uploadedFiles.length > 0 && (
                                         <div className="flex flex-wrap gap-2">
-                                            {uploadedFiles.map((file, idx) => (
+                                            {uploadedFiles.map((fileObj, idx) => (
                                                 <span key={idx} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                                                    {file}
+                                                    {fileObj.name}
                                                     <button onClick={() => setUploadedFiles(uploadedFiles.filter((_, i) => i !== idx))}>
                                                         <X className="size-4 hover:text-red-500" />
                                                     </button>
