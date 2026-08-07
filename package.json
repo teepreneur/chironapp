@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "sync:avatars": "node scripts/sync_teacher_hero_images.js"
+    "sync:avatars": "node scripts/sync_teacher_hero_images.js",
+    "setup:buckets": "node scripts/setup_storage_buckets.js"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",
