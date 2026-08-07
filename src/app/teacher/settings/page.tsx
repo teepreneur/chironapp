@@ -174,40 +174,61 @@ export default function SettingsPage() {
         if (!profile) return
         setSaving(true)
 
-        const { error } = await supabase
-            .from('profiles')
-            .update({
-                full_name: fullName,
-                bio: bio,
-                subjects: subjects,
-                hourly_rate: hourlyRate ? parseFloat(hourlyRate) : null,
-                avatar_url: avatarUrl,
-                class_mode: classMode,
-                country: country || null,
-                city: city || null,
-                latitude: latitude,
-                longitude: longitude,
-                address: address,
-                cv_url: cvUrl,
-                id_url: idUrl,
-                photo_url: photoUrl,
-                phone_number: phone || null,
-                whatsapp_number: whatsappSameAsPhone ? phone : whatsappNumber || null,
-                whatsapp_enabled: whatsappEnabled,
-                // Payout details
-                payout_method: payoutMethod,
-                momo_provider: payoutMethod === 'mobile_money' ? momoProvider : null,
-                momo_number: payoutMethod === 'mobile_money' ? momoNumber : null,
-                momo_name: payoutMethod === 'mobile_money' ? momoName : null,
-                bank_name: payoutMethod === 'bank' ? bankName : null,
-                bank_account_number: payoutMethod === 'bank' ? bankAccountNumber : null,
-                bank_account_name: payoutMethod === 'bank' ? bankAccountName : null
-            })
-            .eq('id', profile.id)
+        let updatePayload: Record<string, any> = {
+            full_name: fullName,
+            bio: bio,
+            subjects: subjects,
+            hourly_rate: hourlyRate ? parseFloat(hourlyRate) : null,
+            avatar_url: avatarUrl,
+            class_mode: classMode,
+            country: country || null,
+            city: city || null,
+            latitude: latitude,
+            longitude: longitude,
+            address: address,
+            cv_url: cvUrl,
+            id_url: idUrl,
+            photo_url: photoUrl,
+            phone_number: phone || null,
+            whatsapp_number: whatsappSameAsPhone ? phone : whatsappNumber || null,
+            whatsapp_enabled: whatsappEnabled,
+            // Payout details
+            payout_method: payoutMethod,
+            momo_provider: payoutMethod === 'mobile_money' ? momoProvider : null,
+            momo_number: payoutMethod === 'mobile_money' ? momoNumber : null,
+            momo_name: payoutMethod === 'mobile_money' ? momoName : null,
+            bank_name: payoutMethod === 'bank' ? bankName : null,
+            bank_account_number: payoutMethod === 'bank' ? bankAccountNumber : null,
+            bank_account_name: payoutMethod === 'bank' ? bankAccountName : null
+        }
 
-        if (error) {
-            console.error("Save Error:", error)
-            alert(`Failed to save changes: ${error.message || "Unknown error"}`)
+        let saveError: any = null
+        let attempts = 0
+
+        while (attempts < 15) {
+            attempts++
+            const { error } = await supabase
+                .from('profiles')
+                .update(updatePayload)
+                .eq('id', profile.id)
+
+            if (!error) {
+                saveError = null
+                break
+            }
+
+            const unmappedMatch = error.message.match(/Could not find the '([^']+)' column/)
+            if (unmappedMatch && unmappedMatch[1]) {
+                delete updatePayload[unmappedMatch[1]]
+            } else {
+                saveError = error
+                break
+            }
+        }
+
+        if (saveError) {
+            console.error("Save Error:", saveError)
+            alert(`Failed to save changes: ${saveError.message || "Unknown error"}`)
         } else {
             alert("Profile saved successfully!")
             // Refresh profile from DB to ensure state is clean
