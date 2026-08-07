@@ -57,7 +57,7 @@ export function PostSessionSurvey({
                 <CheckCircle2 className="size-10 text-emerald-600 mx-auto" />
                 <h3 className="font-bold text-lg text-emerald-900 dark:text-emerald-300">Session Confirmed!</h3>
                 <p className="text-xs text-emerald-700 dark:text-emerald-400">
-                    Thank you for your feedback! {teacherName}'s earnings have been credited to their Mobile Money vault.
+                    Thank you for your feedback! {teacherName}&apos;s earnings have been credited to their Mobile Money vault.
                 </p>
             </div>
         )
@@ -77,7 +77,7 @@ export function PostSessionSurvey({
 
             {/* Rating Stars */}
             <div className="space-y-1.5">
-                <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">How was today's class?</label>
+                <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">How was today&apos;s class?</label>
                 <div className="flex items-center gap-2">
                     {[1, 2, 3, 4, 5].map((star) => (
                         <button
