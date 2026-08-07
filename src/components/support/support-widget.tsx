@@ -72,71 +72,76 @@ export function SupportWidget() {
                     setUserName(profile.full_name)
                 }
 
-                // 1. Check Admin Status
-                const { data: settings } = await supabase
-                    .from('admin_settings')
-                    .select('value')
-                    .eq('key', 'is_support_online')
-                    .single()
-
-                if (settings?.value) {
-                    const isOnline = settings.value === true || settings.value === 'true'
-                    setIsSupportOnline(isOnline)
-                }
-
-                // 2. Find or Create Active Chat
-                const { data: existingChat } = await supabase
-                    .from('support_chats')
-                    .select('id')
-                    .eq('user_id', user.id)
-                    .eq('status', 'active')
-                    .single()
-
-                let currentChatId = existingChat?.id
-
-                if (!currentChatId) {
-                    const { data: newChat, error: chatError } = await supabase
-                        .from('support_chats')
-                        .insert({ user_id: user.id, status: 'active' })
-                        .select('id')
+                // 1. Check Admin Status (Safely)
+                try {
+                    const { data: settings } = await supabase
+                        .from('admin_settings')
+                        .select('value')
+                        .eq('key', 'is_support_online')
                         .single()
 
-                    if (chatError) {
-                        console.error("Error creating chat:", chatError)
+                    if (settings?.value) {
+                        const isOnline = settings.value === true || settings.value === 'true'
+                        setIsSupportOnline(isOnline)
                     }
-                    if (newChat) currentChatId = newChat.id
+                } catch {
+                    // Table admin_settings not present yet, default to false
                 }
 
-                setChatId(currentChatId || null)
+                // 2. Find or Create Active Chat (Safely)
+                try {
+                    const { data: existingChat } = await supabase
+                        .from('support_chats')
+                        .select('id')
+                        .eq('user_id', user.id)
+                        .eq('status', 'active')
+                        .single()
 
-                // 3. Load Messages
-                if (currentChatId) {
-                    const { data: msgs } = await supabase
-                        .from('support_messages')
-                        .select('*')
-                        .eq('chat_id', currentChatId)
-                        .order('created_at', { ascending: true })
+                    let currentChatId = existingChat?.id
 
-                    if (msgs) setMessages(msgs)
+                    if (!currentChatId) {
+                        const { data: newChat } = await supabase
+                            .from('support_chats')
+                            .insert({ user_id: user.id, status: 'active' })
+                            .select('id')
+                            .single()
 
-                    // 4. Subscribe to Realtime
-                    channel = supabase
-                        .channel(`widget-chat:${currentChatId}`)
-                        .on(
-                            'postgres_changes',
-                            { event: 'INSERT', schema: 'public', table: 'support_messages', filter: `chat_id=eq.${currentChatId}` },
-                            (payload) => {
-                                const newMsg = payload.new as Message
-                                setMessages(prev => [...prev, newMsg])
-                                if (!isOpen && !newMsg.is_bot && newMsg.sender_id !== user.id) {
-                                    setHasUnread(true)
+                        if (newChat) currentChatId = newChat.id
+                    }
+
+                    setChatId(currentChatId || null)
+
+                    // 3. Load Messages
+                    if (currentChatId) {
+                        const { data: msgs } = await supabase
+                            .from('support_messages')
+                            .select('*')
+                            .eq('chat_id', currentChatId)
+                            .order('created_at', { ascending: true })
+
+                        if (msgs) setMessages(msgs)
+
+                        // 4. Subscribe to Realtime
+                        channel = supabase
+                            .channel(`widget-chat:${currentChatId}`)
+                            .on(
+                                'postgres_changes',
+                                { event: 'INSERT', schema: 'public', table: 'support_messages', filter: `chat_id=eq.${currentChatId}` },
+                                (payload) => {
+                                    const newMsg = payload.new as Message
+                                    setMessages(prev => [...prev, newMsg])
+                                    if (!isOpen && !newMsg.is_bot && newMsg.sender_id !== user.id) {
+                                        setHasUnread(true)
+                                    }
                                 }
-                            }
-                        )
-                        .subscribe()
+                            )
+                            .subscribe()
+                    }
+                } catch {
+                    // Support tables not initialized yet
                 }
             } catch (error) {
-                console.error("Chat init error:", error)
+                // Catch any auth or load errors silently
             } finally {
                 setLoading(false)
             }
