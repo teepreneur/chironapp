@@ -129,25 +129,38 @@ export default function ParentSettingsPage() {
         if (!profile) return
         setSaving(true)
 
-        const updatePayload: Record<string, any> = {
-            full_name: fullName,
-            avatar_url: avatarUrl,
-            country: country || null,
-            city: city || null
-        }
+        try {
+            const response = await fetch('/api/profile/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    full_name: fullName,
+                    avatar_url: avatarUrl,
+                    country: country || null,
+                    city: city || null
+                })
+            })
 
-        const { error } = await supabase
-            .from('profiles')
-            .update(updatePayload)
-            .eq('id', profile.id)
+            const resData = await response.json()
 
-        if (error) {
-            console.error(error)
-            alert(`Failed to save profile: ${error.message || 'Unknown error'}`)
-        } else {
-            alert("Profile saved successfully!")
+            if (!response.ok || resData.error) {
+                alert(`Failed to save profile: ${resData.error || 'Unknown error'}`)
+            } else {
+                alert("Profile saved successfully!")
+                if (resData.profile) {
+                    setProfile(resData.profile)
+                    setFullName(resData.profile.full_name || "")
+                    setAvatarUrl(resData.profile.avatar_url || null)
+                    setCountry(resData.profile.country || "")
+                    setCity(resData.profile.city || "")
+                }
+            }
+        } catch (e: any) {
+            console.error("Save Error:", e)
+            alert("Failed to save profile. Please try again.")
+        } finally {
+            setSaving(false)
         }
-        setSaving(false)
     }
 
     async function handleAddStudent() {

@@ -174,45 +174,44 @@ export default function SettingsPage() {
         if (!profile) return
         setSaving(true)
 
-        // Only include columns that exist on the Supabase profiles schema
-        const updatePayload: Record<string, any> = {
-            full_name: fullName,
-            bio: bio,
-            subjects: subjects,
-            avatar_url: avatarUrl,
-            country: country || null,
-            city: city || null,
-            momo_number: momoNumber || null
-        }
+        try {
+            const response = await fetch('/api/profile/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    full_name: fullName,
+                    bio: bio,
+                    subjects: subjects,
+                    avatar_url: avatarUrl,
+                    country: country || null,
+                    city: city || null,
+                    momo_number: momoNumber || null
+                })
+            })
 
-        const { error } = await supabase
-            .from('profiles')
-            .update(updatePayload)
-            .eq('id', profile.id)
+            const resData = await response.json()
 
-        if (error) {
-            console.error("Save Error:", error)
-            alert(`Failed to save changes: ${error.message || "Unknown error"}`)
-        } else {
-            alert("Profile saved successfully!")
-            // Refresh profile from DB to ensure state is clean
-            const { data } = await supabase.from('profiles').select('*').eq('id', profile.id).single()
-            if (data) {
-                setProfile(data)
-                setFullName(data.full_name || "")
-                setBio(data.bio || "")
-                setSubjects(data.subjects || [])
-                setHourlyRate(data.hourly_rate?.toString() || "")
-                setAvatarUrl(data.avatar_url || null)
-                setClassMode((data as any).class_mode || 'online')
-                setCountry((data as any).country || "")
-                setCity((data as any).city || "")
-                setCvUrl((data as any).cv_url || null)
-                setIdUrl((data as any).id_url || null)
-                setPhotoUrl((data as any).photo_url || null)
+            if (!response.ok || resData.error) {
+                alert(`Failed to save changes: ${resData.error || "Unknown error"}`)
+            } else {
+                alert("Profile saved successfully!")
+                if (resData.profile) {
+                    setProfile(resData.profile)
+                    setFullName(resData.profile.full_name || "")
+                    setBio(resData.profile.bio || "")
+                    setSubjects(resData.profile.subjects || [])
+                    setAvatarUrl(resData.profile.avatar_url || null)
+                    setCountry(resData.profile.country || "")
+                    setCity(resData.profile.city || "")
+                    setMomoNumber(resData.profile.momo_number || "")
+                }
             }
+        } catch (e: any) {
+            console.error("Save Error:", e)
+            alert("Failed to save changes. Please try again.")
+        } finally {
+            setSaving(false)
         }
-        setSaving(false)
     }
 
     const handleAddSubject = () => {
